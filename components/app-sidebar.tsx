@@ -1,6 +1,20 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
+
+import { NavDocuments } from "@/components/nav-documents";
+import { NavMain } from "@/components/nav-main";
+import { NavUser } from "@/components/nav-user";
+import {
+  Sidebar,
+  SidebarContent,
+  SidebarFooter,
+  SidebarHeader,
+  SidebarMenu,
+  SidebarMenuButton,
+  SidebarMenuItem,
+} from "@/components/ui/sidebar";
+
 import {
   IconCamera,
   IconChartBar,
@@ -10,28 +24,11 @@ import {
   IconFileDescription,
   IconFileWord,
   IconFolder,
-  IconHelp,
   IconInnerShadowTop,
   IconListDetails,
   IconReport,
-  IconSearch,
-  IconSettings,
   IconUsers,
-} from "@tabler/icons-react"
-
-import { NavDocuments } from "@/components/nav-documents"
-import { NavMain } from "@/components/nav-main"
-import { NavSecondary } from "@/components/nav-secondary"
-import { NavUser } from "@/components/nav-user"
-import {
-  Sidebar,
-  SidebarContent,
-  SidebarFooter,
-  SidebarHeader,
-  SidebarMenu,
-  SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/components/ui/sidebar"
+} from "@tabler/icons-react";
 
 const data = {
   user: {
@@ -42,27 +39,27 @@ const data = {
   navMain: [
     {
       title: "Dashboard",
-      url: "#",
+      href: "/dashboard",
       icon: IconDashboard,
     },
     {
       title: "Lifecycle",
-      url: "#",
+      href: "/dashboard/lifecycle",
       icon: IconListDetails,
     },
     {
       title: "Analytics",
-      url: "#",
+      href: "#",
       icon: IconChartBar,
     },
     {
       title: "Projects",
-      url: "#",
+      href: "#",
       icon: IconFolder,
     },
     {
       title: "Team",
-      url: "#",
+      href: "#",
       icon: IconUsers,
     },
   ],
@@ -71,88 +68,72 @@ const data = {
       title: "Capture",
       icon: IconCamera,
       isActive: true,
-      url: "#",
+      href: "#",
       items: [
         {
           title: "Active Proposals",
-          url: "#",
+          href: "#",
         },
         {
           title: "Archived",
-          url: "#",
+          href: "#",
         },
       ],
     },
     {
       title: "Proposal",
       icon: IconFileDescription,
-      url: "#",
+      href: "#",
       items: [
         {
           title: "Active Proposals",
-          url: "#",
+          href: "#",
         },
         {
           title: "Archived",
-          url: "#",
+          href: "#",
         },
       ],
     },
     {
       title: "Prompts",
       icon: IconFileAi,
-      url: "#",
+      href: "#",
       items: [
         {
           title: "Active Proposals",
-          url: "#",
+          href: "#",
         },
         {
           title: "Archived",
-          url: "#",
+          href: "#",
         },
       ],
     },
   ],
-  navSecondary: [
-    {
-      title: "Settings",
-      url: "#",
-      icon: IconSettings,
-    },
-    {
-      title: "Get Help",
-      url: "#",
-      icon: IconHelp,
-    },
-    {
-      title: "Search",
-      url: "#",
-      icon: IconSearch,
-    },
-  ],
+
   documents: [
     {
       name: "Data Library",
-      url: "#",
+      href: "#",
       icon: IconDatabase,
     },
     {
       name: "Reports",
-      url: "#",
+      href: "#",
       icon: IconReport,
     },
     {
       name: "Word Assistant",
-      url: "#",
+      href: "#",
       icon: IconFileWord,
     },
   ],
-}
+};
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar collapsible="offcanvas" {...props}>
+    <Sidebar className="bg-blue-950" collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem>
@@ -161,21 +142,22 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="data-[slot=sidebar-menu-button]:!p-1.5"
             >
               <a href="#">
-                <IconInnerShadowTop className="!size-5" />
-                <span className="text-base font-semibold">Poss Pov</span>
+                <IconInnerShadowTop className="!size-5 text-white" />
+                <span className="text-base font-semibold text-white">
+                  Poss Pov
+                </span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent>
+      <SidebarContent className="text-white">
         <NavMain items={data.navMain} />
         <NavDocuments items={data.documents} />
-        <NavSecondary items={data.navSecondary} className="mt-auto" />
       </SidebarContent>
       <SidebarFooter>
         <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
-  )
+  );
 }
