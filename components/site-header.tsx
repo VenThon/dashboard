@@ -1,6 +1,15 @@
-import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
+
+import {
+  DropdownMenu,
+  DropdownMenuTrigger,
+} from "@radix-ui/react-dropdown-menu";
+
+import { Button } from "./ui/button";
+import { DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu";
+
+const changeLanguage = () => {};
 
 export function SiteHeader() {
   return (
@@ -13,7 +22,7 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">PP Dashboard</h1>
         <div className="ml-auto flex items-center gap-2">
-          <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
+          {/* <Button variant="ghost" asChild size="sm" className="hidden sm:flex">
             <a
               href="https://github.com/shadcn-ui/ui/tree/main/apps/v4/app/(examples)/dashboard"
               rel="noopener noreferrer"
@@ -22,7 +31,32 @@ export function SiteHeader() {
             >
               GitHub
             </a>
-          </Button>
+          </Button> */}
+          {/* <Select>
+            <SelectTrigger>
+              <SelectValue placeholder="Language" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="kh">Khmer</SelectItem>
+              <SelectItem value="En">English</SelectItem>
+            </SelectContent>
+          </Select> */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="outline" size="sm" className="w-24">
+                <span className="fi fi-gb mr-2"></span>
+                <span className="fi fi-kh"></span>
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end">
+              <DropdownMenuItem>
+                <span className="fi fi-gb mr-2"></span> English
+              </DropdownMenuItem>
+              <DropdownMenuItem>
+                <span className="fi fi-kh mr-2"></span> ភាសាខ្មែរ
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
     </header>

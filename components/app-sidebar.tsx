@@ -136,26 +136,24 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
     <Sidebar className="bg-blue-950" collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
-          <SidebarMenuItem>
+          <SidebarMenuItem className="text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
             <SidebarMenuButton
               asChild
-              className="data-[slot=sidebar-menu-button]:!p-1.5"
+              className="text-white transition-colors data-[slot=sidebar-menu-button]:!p-1.5 hover:[&_span]:text-blue-950"
             >
               <a href="#">
                 <IconInnerShadowTop className="!size-5 text-white" />
-                <span className="text-base font-semibold text-white">
-                  Poss Pov
-                </span>
+                <span className="text-base font-semibold">Poss Pov</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="text-white">
+      <SidebarContent className="text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
         <NavMain items={data.navMain} />
         <NavDocuments items={data.documents} />
       </SidebarContent>
-      <SidebarFooter>
+      <SidebarFooter className="text-white">
         <NavUser user={data.user} />
       </SidebarFooter>
     </Sidebar>
