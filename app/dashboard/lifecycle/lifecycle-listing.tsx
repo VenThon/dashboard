@@ -96,13 +96,6 @@ const MockData = [
     phonenumber: 11222222,
     id: 123,
   },
-  {
-    no: 11,
-    name: "Alzakana",
-    gender: "M",
-    phonenumber: 11222222,
-    id: 123,
-  },
 ];
 
 export default function LifecycleListing() {
@@ -167,7 +160,7 @@ export default function LifecycleListing() {
   ];
   return (
     <section>
-      <h1 className="text-3xl font-bold text-blue-600">Life Cycle Page</h1>
+      <h1 className="text-3xl font-bold text-blue-900">Life Cycle Page</h1>
       <div className="mt-5 flex items-center justify-end gap-3">
         <div className="relative w-full max-w-md">
           <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
@@ -177,11 +170,8 @@ export default function LifecycleListing() {
             className="focus-visible:ring-primary/50 rounded-lg py-2 pr-4 pl-8 focus-visible:ring-2"
           />
         </div>
-        <Button
-          variant="destructive"
-          className="hover:bg-destructive/90 px-4 py-2 whitespace-nowrap transition-colors"
-        >
-          Create new
+        <Button className="bg-blue-900 px-4 py-2 whitespace-nowrap transition-colors hover:bg-blue-800">
+          <Link href="/dashboard/lifecycle/create">Create New</Link>
         </Button>
       </div>
       <div className="mt-4">

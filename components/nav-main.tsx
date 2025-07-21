@@ -1,6 +1,5 @@
 "use client";
 
-// Make sure you have this utility
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 
@@ -32,6 +31,7 @@ export function NavMain({
         <SidebarMenu>
           {items.map((item) => {
             const isActive = pathname === item.href;
+
             return (
               <SidebarMenuItem key={item.title}>
                 <SidebarMenuButton
@@ -39,9 +39,7 @@ export function NavMain({
                   tooltip={item.title}
                   className={cn(
                     "transition-colors",
-                    isActive
-                      ? "!bg-yellow-300 !text-blue-950"
-                      : "text-gray-300 hover:bg-yellow-300 hover:text-blue-950",
+                    isActive ? "bg-orange-400 text-white" : "text-gray-300",
                   )}
                 >
                   <Link href={item.href} className="flex items-center gap-2">

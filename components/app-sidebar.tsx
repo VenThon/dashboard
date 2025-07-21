@@ -16,18 +16,13 @@ import {
 } from "@/components/ui/sidebar";
 
 import {
-  IconCamera,
   IconChartBar,
   IconDashboard,
   IconDatabase,
-  IconFileAi,
-  IconFileDescription,
   IconFileWord,
-  IconFolder,
   IconInnerShadowTop,
   IconListDetails,
   IconReport,
-  IconUsers,
 } from "@tabler/icons-react";
 
 const data = {
@@ -52,64 +47,6 @@ const data = {
       href: "#",
       icon: IconChartBar,
     },
-    {
-      title: "Projects",
-      href: "#",
-      icon: IconFolder,
-    },
-    {
-      title: "Team",
-      href: "#",
-      icon: IconUsers,
-    },
-  ],
-  navClouds: [
-    {
-      title: "Capture",
-      icon: IconCamera,
-      isActive: true,
-      href: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          href: "#",
-        },
-        {
-          title: "Archived",
-          href: "#",
-        },
-      ],
-    },
-    {
-      title: "Proposal",
-      icon: IconFileDescription,
-      href: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          href: "#",
-        },
-        {
-          title: "Archived",
-          href: "#",
-        },
-      ],
-    },
-    {
-      title: "Prompts",
-      icon: IconFileAi,
-      href: "#",
-      items: [
-        {
-          title: "Active Proposals",
-          href: "#",
-        },
-        {
-          title: "Archived",
-          href: "#",
-        },
-      ],
-    },
   ],
 
   documents: [
@@ -133,7 +70,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar className="bg-blue-950" collapsible="offcanvas" {...props}>
+    <Sidebar className="bg-blue-900" collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem className="text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
@@ -142,14 +79,14 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
               className="text-white transition-colors data-[slot=sidebar-menu-button]:!p-1.5 hover:[&_span]:text-blue-950"
             >
               <a href="#">
-                <IconInnerShadowTop className="!size-5 text-white" />
-                <span className="text-base font-semibold">Poss Pov</span>
+                <IconInnerShadowTop className="!size-8 text-white hover:text-blue-950" />
+                <span className="text-2xl font-bold">Poss Pov</span>
               </a>
             </SidebarMenuButton>
           </SidebarMenuItem>
         </SidebarMenu>
       </SidebarHeader>
-      <SidebarContent className="text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
+      <SidebarContent className="text-3xl font-bold text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
         <NavMain items={data.navMain} />
         <NavDocuments items={data.documents} />
       </SidebarContent>

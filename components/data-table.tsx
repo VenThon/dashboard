@@ -124,13 +124,13 @@ export function DataTable<TData, TValue>({
             </DropdownMenu>
           )}
         </div>
-        <div className="border-primary mt-2 overflow-hidden rounded-md rounded-t-lg border">
+        <div className="mt-2 overflow-hidden rounded-md rounded-t-lg border border-blue-900">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow
                   key={headerGroup.id}
-                  className="bg-primary hover:bg-blue-900"
+                  className="bg-blue-900 hover:bg-blue-900"
                 >
                   {headerGroup.headers.map((header) => {
                     return (

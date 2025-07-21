@@ -2,12 +2,13 @@ import { Separator } from "@/components/ui/separator";
 import { SidebarTrigger } from "@/components/ui/sidebar";
 
 import {
-  DropdownMenu,
-  DropdownMenuTrigger,
-} from "@radix-ui/react-dropdown-menu";
-
-import { Button } from "./ui/button";
-import { DropdownMenuContent, DropdownMenuItem } from "./ui/dropdown-menu";
+  Select,
+  SelectContent,
+  SelectGroup,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "./ui/select";
 
 const changeLanguage = () => {};
 
@@ -22,21 +23,18 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">PP Dashboard</h1>
         <div className="ml-auto flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button variant="outline" size="sm" className="w-24">
-                Language
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent align="end">
-              <DropdownMenuItem>
-                <span className="fi fi-gb mr-2"></span> English
-              </DropdownMenuItem>
-              <DropdownMenuItem>
-                <span className="fi fi-kh mr-2"></span> Khmer
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
+          <Select defaultValue="en">
+            <SelectTrigger className="w-[150px]">
+              <SelectValue placeholder="Language" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value="en">English</SelectItem>
+                <SelectItem value="kh">Khmer</SelectItem>
+                <SelectItem value="fr">France</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
         </div>
       </div>
     </header>
