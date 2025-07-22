@@ -21,9 +21,10 @@ import {
   IconDatabase,
   IconFileWord,
   IconInnerShadowTop,
-  IconListDetails,
   IconReport,
 } from "@tabler/icons-react";
+
+import NavBarDashboard from "./nav-dashboard";
 
 const data = {
   user: {
@@ -31,23 +32,6 @@ const data = {
     email: "posspov@gmail.com",
     avatar: "/avatars/shadcn.jpg",
   },
-  navMain: [
-    {
-      title: "Dashboard",
-      href: "/dashboard",
-      icon: IconDashboard,
-    },
-    {
-      title: "Lifecycle",
-      href: "/dashboard/lifecycle",
-      icon: IconListDetails,
-    },
-    {
-      title: "Analytics",
-      href: "#",
-      icon: IconChartBar,
-    },
-  ],
 
   documents: [
     {
@@ -87,7 +71,32 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
         </SidebarMenu>
       </SidebarHeader>
       <SidebarContent className="text-3xl font-bold text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
-        <NavMain items={data.navMain} />
+        <NavBarDashboard />
+        <SidebarMenu>
+          {/* <NavBarDashboard /> */}
+          <SidebarMenuItem>
+            <NavMain
+              items={[
+                {
+                  title: "Dashboard",
+                  href: "/dashboard",
+                  icon: IconDashboard,
+                },
+                {
+                  title: "Analytics",
+                  href: "#",
+                  icon: IconChartBar,
+                },
+                {
+                  icon: IconFileWord,
+                  title: "Lifecycle",
+                  href: ["/dashboard/lifecycle", "/dashboard/lifecycle/create"],
+                },
+              ]}
+            />
+          </SidebarMenuItem>
+        </SidebarMenu>
+        {/* <NavMain items={data.navMain} /> */}
         <NavDocuments items={data.documents} />
       </SidebarContent>
       <SidebarFooter className="text-white">

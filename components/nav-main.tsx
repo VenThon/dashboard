@@ -19,7 +19,7 @@ export function NavMain({
 }: {
   items: {
     title: string;
-    href: string;
+    href: string | string[];
     icon?: Icon;
   }[];
 }) {
@@ -42,7 +42,10 @@ export function NavMain({
                     isActive ? "bg-orange-400 text-white" : "text-gray-300",
                   )}
                 >
-                  <Link href={item.href} className="flex items-center gap-2">
+                  <Link
+                    href={Array.isArray(item.href) ? item.href[0] : item.href}
+                    className="flex items-center gap-2"
+                  >
                     {item.icon && <item.icon className="h-4 w-4" />}
                     <span>{item.title}</span>
                   </Link>
