@@ -20,7 +20,7 @@ bun dev
 npm install next-intl
 ```
 
-[Now, we’re going to create the following file structure:]
+[Now, we’re going to create the following file structure]()
 
 ```bash
 ├── messages
@@ -39,3 +39,7 @@ npm install next-intl
             └── page.tsx
 
 ```
+
+## authentication using lucia auth with nextjs
+
+[Reference lucia auth](https://lucia-auth.com/)
