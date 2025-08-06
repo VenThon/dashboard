@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
-import { FileText, LucideIcon } from "lucide-react";
+import { BarChart2, Database, FileText, LucideIcon } from "lucide-react";
 import { useLocale } from "next-intl";
 
 import {
@@ -54,7 +54,7 @@ const SideBarMenuBtn = ({
       asChild
       isActive={isActive}
       tooltip={title}
-      className="data-[active=true]:bg-secondary text-white hover:text-white data-[active=true]:text-white"
+      className="text-white hover:text-white data-[active=true]:bg-orange-400 data-[active=true]:text-white"
     >
       <Link href={Array.isArray(href) ? href[0] : href} {...props}>
         <Icon />
@@ -71,9 +71,19 @@ export default function NavBarDashboard() {
         <SidebarMenu key="lifecycle">
           <SidebarMenuItem>
             <SideBarMenuBtn
+              icon={Database}
+              href={"/dashboard"}
+              title="Dashboard"
+            />
+            <SideBarMenuBtn
               icon={FileText}
-              href={["/dashboard/lifecyle", "/dashboard/lifecycle/create"]}
+              href={["/dashboard/lifecycle", "/dashboard/lifecycle/create"]}
               title="Lifecycle"
+            />
+            <SideBarMenuBtn
+              icon={BarChart2}
+              href={"/analytic"}
+              title="Analytics"
             />
           </SidebarMenuItem>
         </SidebarMenu>

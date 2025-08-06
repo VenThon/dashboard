@@ -4,6 +4,7 @@ import { SidebarTrigger } from "@/components/ui/sidebar";
 import { useTranslations } from "next-intl";
 
 import LocaleSwitcher from "./lang/local-switcher";
+import { ModeToggle } from "./theme/theme-toggle";
 
 export function SiteHeader() {
   const t = useTranslations("HomePage");
@@ -17,19 +18,7 @@ export function SiteHeader() {
         />
         <h1 className="text-base font-medium">{t("titleDashboard")}</h1>
         <div className="ml-auto flex items-center gap-2">
-          {/* <Select defaultValue="en">
-            <SelectTrigger className="w-[150px]">
-              <SelectValue placeholder="Language" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectGroup>
-                <SelectItem value="en">English</SelectItem>
-                <SelectItem value="kh">Khmer</SelectItem>
-                <SelectItem value="fr">France</SelectItem>
-              </SelectGroup>
-            </SelectContent>
-          </Select> */}
-
+          <ModeToggle />
           <LocaleSwitcher />
         </div>
       </div>

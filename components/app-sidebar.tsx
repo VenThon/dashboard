@@ -54,7 +54,7 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar className="bg-blue-900" collapsible="offcanvas" {...props}>
+    <Sidebar className="bg-[#058248]" collapsible="offcanvas" {...props}>
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem className="text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
@@ -73,7 +73,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       <SidebarContent className="text-3xl font-bold text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
         <NavBarDashboard />
         <SidebarMenu>
-          {/* <NavBarDashboard /> */}
           <SidebarMenuItem>
             <NavMain
               items={[
@@ -87,16 +86,11 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
                   href: "#",
                   icon: IconChartBar,
                 },
-                {
-                  icon: IconFileWord,
-                  title: "Lifecycle",
-                  href: ["/dashboard/lifecycle", "/dashboard/lifecycle/create"],
-                },
               ]}
             />
           </SidebarMenuItem>
         </SidebarMenu>
-        {/* <NavMain items={data.navMain} /> */}
+
         <NavDocuments items={data.documents} />
       </SidebarContent>
       <SidebarFooter className="text-white">
