@@ -16,7 +16,7 @@ import { PaginationWithLinks } from "@/components/ui/pagination-link";
 
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
-import { MoreHorizontal, Search } from "lucide-react";
+import { BadgePlus, Eye, Search, Trash } from "lucide-react";
 
 interface DataProps {
   no: number;
@@ -141,9 +141,14 @@ export default function LifecycleListing() {
           <section>
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" className="h-8 w-8 p-0">
+                <Button variant="ghost" className="h-8 w-16 p-0">
                   <span className="sr-only">Open menu</span>
-                  <MoreHorizontal />
+                  <div className="flex size-7 items-center justify-center rounded-2xl bg-[#058248]">
+                    <Eye className="text-white" />
+                  </div>
+                  <div className="flex size-7 items-center justify-center rounded-2xl bg-[#e63a3a]">
+                    <Trash className="text-white" />
+                  </div>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -160,20 +165,26 @@ export default function LifecycleListing() {
   ];
   return (
     <section>
-      <h1 className="text-3xl font-bold text-blue-900">Life Cycle Page</h1>
-      <div className="mt-5 flex items-center justify-end gap-3">
-        <div className="relative w-full max-w-md">
-          <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
-          <Input
-            type="search"
-            placeholder="Search here..."
-            className="focus-visible:ring-primary/50 rounded-lg py-2 pr-4 pl-8 focus-visible:ring-2"
-          />
+      <div className="rounded-xl border bg-gray-50 p-7">
+        <h1 className="text-3xl font-bold dark:text-gray-600">
+          Life Cycle Page
+        </h1>
+        <div className="mt-5 flex items-center justify-between">
+          <div className="relative w-full max-w-md">
+            <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
+            <Input
+              type="search"
+              placeholder="Search here..."
+              className="focus-visible:ring-primary/50 rounded-lg py-2 pr-4 pl-8 focus-visible:ring-2"
+            />
+          </div>
+          <Button className="bg-[#058248] px-4 py-2 whitespace-nowrap transition-colors hover:bg-blue-800 dark:text-white">
+            <BadgePlus />
+            <Link href="/dashboard/lifecycle/create">Create New</Link>
+          </Button>
         </div>
-        <Button className="bg-blue-900 px-4 py-2 whitespace-nowrap transition-colors hover:bg-blue-800">
-          <Link href="/dashboard/lifecycle/create">Create New</Link>
-        </Button>
       </div>
+
       <div className="mt-4">
         <DataTable data={MockData} columns={columns} />
       </div>

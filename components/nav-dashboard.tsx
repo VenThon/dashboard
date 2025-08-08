@@ -54,7 +54,7 @@ const SideBarMenuBtn = ({
       asChild
       isActive={isActive}
       tooltip={title}
-      className="text-white hover:text-white data-[active=true]:bg-orange-400 data-[active=true]:text-white"
+      className="text-white hover:text-white data-[active=true]:bg-[#50c9ce] data-[active=true]:text-white"
     >
       <Link href={Array.isArray(href) ? href[0] : href} {...props}>
         <Icon />

@@ -3,7 +3,6 @@
 import * as React from "react";
 
 import { NavDocuments } from "@/components/nav-documents";
-import { NavMain } from "@/components/nav-main";
 import { NavUser } from "@/components/nav-user";
 import {
   Sidebar,
@@ -16,8 +15,6 @@ import {
 } from "@/components/ui/sidebar";
 
 import {
-  IconChartBar,
-  IconDashboard,
   IconDatabase,
   IconFileWord,
   IconInnerShadowTop,
@@ -72,24 +69,6 @@ export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
       </SidebarHeader>
       <SidebarContent className="text-3xl font-bold text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
         <NavBarDashboard />
-        <SidebarMenu>
-          <SidebarMenuItem>
-            <NavMain
-              items={[
-                {
-                  title: "Dashboard",
-                  href: "/dashboard",
-                  icon: IconDashboard,
-                },
-                {
-                  title: "Analytics",
-                  href: "#",
-                  icon: IconChartBar,
-                },
-              ]}
-            />
-          </SidebarMenuItem>
-        </SidebarMenu>
 
         <NavDocuments items={data.documents} />
       </SidebarContent>

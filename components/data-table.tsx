@@ -68,8 +68,8 @@ export function DataTable<TData, TValue>({
           {hideColumn && (
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="outline" size="sm">
-                  <Settings />
+                <Button variant="outline" size="sm" className="bg-[#058248]">
+                  <Settings className="text-white" />
                 </Button>
               </DropdownMenuTrigger>
 
@@ -86,7 +86,7 @@ export function DataTable<TData, TValue>({
                       key={column.id}
                       className="capitalize"
                       checked={column.getIsVisible()}
-                      onSelect={(e) => e.preventDefault()} // 👈 Prevent menu from closing
+                      onSelect={(e) => e.preventDefault()}
                       onCheckedChange={(value) =>
                         column.toggleVisibility(!!value)
                       }
@@ -124,13 +124,13 @@ export function DataTable<TData, TValue>({
             </DropdownMenu>
           )}
         </div>
-        <div className="mt-2 overflow-hidden rounded-md rounded-t-lg border border-blue-900">
+        <div className="mt-2 overflow-hidden rounded-md rounded-t-lg border border-gray-300">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
                 <TableRow
                   key={headerGroup.id}
-                  className="bg-blue-900 hover:bg-blue-900"
+                  className="bg-[#058248] hover:bg-[#058248]"
                 >
                   {headerGroup.headers.map((header) => {
                     return (
