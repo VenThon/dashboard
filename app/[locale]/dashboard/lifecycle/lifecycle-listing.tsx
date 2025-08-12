@@ -106,7 +106,7 @@ export default function LifecycleListing() {
   const columns: ColumnDef<DataProps>[] = [
     {
       accessorKey: "no",
-      header: "No",
+      header: "Nº",
       cell: ({ row }) => {
         return <section>{row.original.no}</section>;
       },
@@ -165,12 +165,12 @@ export default function LifecycleListing() {
   ];
   return (
     <section>
-      <div className="rounded-xl border bg-gray-50 p-7">
+      <div className="rounded-xl border bg-gray-50 p-7 dark:bg-black">
         <h1 className="text-3xl font-bold dark:text-gray-600">
           Life Cycle Page
         </h1>
         <div className="mt-5 flex items-center justify-between">
-          <div className="relative w-full max-w-md">
+          <div className="relative w-full max-w-md bg-white">
             <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
             <Input
               type="search"

@@ -51,7 +51,11 @@ const data = {
 
 export function AppSidebar({ ...props }: React.ComponentProps<typeof Sidebar>) {
   return (
-    <Sidebar className="bg-[#058248]" collapsible="offcanvas" {...props}>
+    <Sidebar
+      className="bg-[#058248] dark:bg-black"
+      collapsible="offcanvas"
+      {...props}
+    >
       <SidebarHeader>
         <SidebarMenu>
           <SidebarMenuItem className="text-white [&_a:hover]:bg-gray-100 [&_a:hover]:text-blue-950">
