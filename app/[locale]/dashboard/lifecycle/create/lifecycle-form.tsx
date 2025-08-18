@@ -1,5 +1,6 @@
 "use client";
 
+import { FileDropzone } from "@/components/FileDropzone";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { FieldLabel } from "@/components/ui/field-label";
@@ -16,7 +17,14 @@ import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "@/i18n/navigation";
 
-import { ChevronLeft } from "lucide-react";
+import {
+  ChevronLeft,
+  MapPinHouse,
+  Paperclip,
+  PhoneCall,
+  Users,
+  VenusAndMars,
+} from "lucide-react";
 import { useForm } from "react-hook-form";
 
 export default function CreateRequestForm() {
@@ -36,7 +44,7 @@ export default function CreateRequestForm() {
       </div>
       <Card className="mt-4 w-full p-4">
         <div className="mt-4 flex w-full justify-center">
-          <h1 className="text-primary text-4xl font-bold dark:text-white">
+          <h1 className="text-4xl font-bold text-[#058248] dark:text-white">
             Create Personal Information
           </h1>
         </div>
@@ -53,7 +61,13 @@ export default function CreateRequestForm() {
                     name=""
                     render={({ field }) => (
                       <FormItem>
-                        <FieldLabel label="Full Name" required />
+                        <div className="flex">
+                          <Users size={20} className="text-orange-400" />
+                          <div className="ml-3 text-[#058248]">
+                            <FieldLabel label="Full Name" required />
+                          </div>
+                        </div>
+
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
@@ -71,11 +85,18 @@ export default function CreateRequestForm() {
                   name=""
                   render={({ field }) => (
                     <FormItem>
-                      <FieldLabel label="Phone Number" required />
+                      <div className="flex">
+                        <PhoneCall size={20} className="text-orange-400" />
+                        <div className="ml-3 text-[#058248]">
+                          <FieldLabel label="Phone number" required />
+                        </div>
+                      </div>
                       <FormControl>
-                        <Input type="number" {...field} min={0} />
+                        <Input {...field} />
                       </FormControl>
-                      <FormDescription>Phone number +855()</FormDescription>
+                      <FormDescription>
+                        Phone number of this request
+                      </FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -85,11 +106,16 @@ export default function CreateRequestForm() {
                   name=""
                   render={({ field }) => (
                     <FormItem>
-                      <FieldLabel label="Gender" required />
+                      <div className="flex">
+                        <VenusAndMars size={20} className="text-orange-400" />
+                        <div className="ml-3 text-[#058248]">
+                          <FieldLabel label="Gender" required />
+                        </div>
+                      </div>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
-                      <FormDescription>Name of this request</FormDescription>
+                      <FormDescription>Input your gender</FormDescription>
                       <FormMessage />
                     </FormItem>
                   )}
@@ -102,7 +128,12 @@ export default function CreateRequestForm() {
                   name=""
                   render={({ field }) => (
                     <FormItem>
-                      <FieldLabel label="Address" required />
+                      <div className="flex">
+                        <MapPinHouse size={20} className="text-orange-400" />
+                        <div className="ml-3 text-[#058248]">
+                          <FieldLabel label="Address" required />
+                        </div>
+                      </div>
                       <FormControl>
                         <Textarea
                           placeholder="Please enter your local address"
@@ -119,18 +150,13 @@ export default function CreateRequestForm() {
               </div>
 
               <div className="mt-4">
-                <FormItem>
-                  <FieldLabel label="Attachment" required />
-                  <div className="mt-4">
-                    <p className="text-sm">
-                      Supported formates: JPG, JPEG, PNG
-                    </p>
+                <div className="flex">
+                  <Paperclip size={20} className="text-orange-400" />
+                  <div className="ml-3 text-[#058248]">
+                    <FieldLabel label="Attachment" required />
                   </div>
-
-                  <FormControl>
-                    <Input id="" type="file" />
-                  </FormControl>
-                </FormItem>
+                </div>
+                <FileDropzone />
               </div>
 
               <div className="flex w-full justify-end">
