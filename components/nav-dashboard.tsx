@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
 import { BarChart2, Database, FileText, LucideIcon } from "lucide-react";
-import { useLocale } from "next-intl";
+import { useLocale, useTranslations } from "next-intl";
 
 import {
   SidebarGroup,
@@ -65,6 +65,7 @@ const SideBarMenuBtn = ({
 };
 
 export default function NavBarDashboard() {
+  const sidebarT = useTranslations("sidebar");
   return (
     <SidebarGroup>
       <SidebarGroupContent className="flex flex-col gap-2">
@@ -73,17 +74,17 @@ export default function NavBarDashboard() {
             <SideBarMenuBtn
               icon={Database}
               href={"/dashboard"}
-              title="Dashboard"
+              title={sidebarT("dashboard")}
             />
             <SideBarMenuBtn
               icon={FileText}
               href={["/dashboard/lifecycle", "/dashboard/lifecycle/create"]}
-              title="Lifecycle"
+              title={sidebarT("lifeCycle")}
             />
             <SideBarMenuBtn
               icon={BarChart2}
               href={"/analytic"}
-              title="Analytics"
+              title={sidebarT("analytics")}
             />
           </SidebarMenuItem>
         </SidebarMenu>

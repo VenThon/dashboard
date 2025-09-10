@@ -16,7 +16,7 @@ import { PaginationWithLinks } from "@/components/ui/pagination-link";
 
 import { DropdownMenu } from "@radix-ui/react-dropdown-menu";
 import { ColumnDef } from "@tanstack/react-table";
-import { BadgePlus, Eye, Search, Trash } from "lucide-react";
+import { BadgePlus, Eye, XIcon } from "lucide-react";
 
 interface DataProps {
   no: number;
@@ -134,7 +134,7 @@ export default function LifecycleListing() {
     },
     {
       id: "actions",
-      header: "Action",
+      header: () => <span className="text-center">Actions</span>,
       enableHiding: false,
       cell: ({ row }) => {
         return (
@@ -145,9 +145,6 @@ export default function LifecycleListing() {
                   <span className="sr-only">Open menu</span>
                   <div className="flex size-7 items-center justify-center rounded-2xl bg-[#058248]">
                     <Eye className="text-white" />
-                  </div>
-                  <div className="flex size-7 items-center justify-center rounded-2xl bg-[#e63a3a]">
-                    <Trash className="text-white" />
                   </div>
                 </Button>
               </DropdownMenuTrigger>
@@ -170,13 +167,17 @@ export default function LifecycleListing() {
           Life Cycle Page
         </h1>
         <div className="mt-5 flex items-center justify-between">
-          <div className="relative w-full max-w-md bg-white">
-            <Search className="text-muted-foreground absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2" />
-            <Input
-              type="search"
-              placeholder="Search here..."
-              className="focus-visible:ring-primary/50 rounded-lg py-2 pr-4 pl-8 focus-visible:ring-2"
-            />
+          <div className="relative w-full flex-1 md:max-w-sm">
+            <Input placeholder="Search..." />
+            <Button
+              type="button"
+              variant="ghost"
+              size="icon"
+              className="absolute top-1/2 right-1 h-7 w-7 -translate-y-1/2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+            >
+              <XIcon className="h-4 w-4" />
+              <span className="sr-only">Clear</span>
+            </Button>
           </div>
           <Button className="bg-[#058248] px-4 py-2 whitespace-nowrap transition-colors hover:bg-blue-800 dark:text-white">
             <BadgePlus />
