@@ -1,9 +1,11 @@
-import React from 'react'
+import DashboardLayout from "@/components/layout/dashboard-layout";
+
+import LifecycleDetailsPage from "./lifecycle-detail";
 
 export default function Page() {
   return (
-    <div>
-      <p>Details</p>
-    </div>
-  )
+    <DashboardLayout>
+      <LifecycleDetailsPage />
+    </DashboardLayout>
+  );
 }

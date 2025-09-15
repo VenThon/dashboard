@@ -1,17 +1,9 @@
 "use client";
 
-import { FileDropzone } from "@/components/FileDropzone";
 import { Button } from "@/components/ui/button";
-import { Card } from "@/components/ui/card";
+import { Card, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { FieldLabel } from "@/components/ui/field-label";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormMessage,
-} from "@/components/ui/form";
+import { Form, FormControl, FormField, FormItem } from "@/components/ui/form";
 import { Input } from "@/components/ui/input";
 import { Separator } from "@/components/ui/separator";
 import { Textarea } from "@/components/ui/textarea";
@@ -21,19 +13,30 @@ import {
   ChevronLeft,
   MapPinHouse,
   NotebookPen,
-  Paperclip,
   PhoneCall,
   Users,
   VenusAndMars,
 } from "lucide-react";
 import { useForm } from "react-hook-form";
 
-export default function CreateRequestForm() {
+interface PersonalInfoForm {
+  fullName: string;
+  phoneNumber: string;
+  gender: string;
+  description: string;
+  address: string;
+}
+
+export default function LifecycleDetailsPage() {
   const router = useRouter();
-  const form = useForm();
+  const form = useForm<PersonalInfoForm>();
+
+  const onSubmit = (data: PersonalInfoForm) => {
+    console.log("Form data saved:", data);
+  };
 
   return (
-    <div className="mx-auto md:mx-2">
+    <div>
       <div>
         <Button
           variant="outline"
@@ -44,36 +47,32 @@ export default function CreateRequestForm() {
         </Button>
       </div>
       <Card className="mt-4 w-full p-4">
-        <div className="mt-4 flex w-full justify-center">
-          <h1 className="text-4xl font-bold text-[#058248] dark:text-white">
-            Create Personal Information
-          </h1>
-        </div>
-
+        <CardHeader>
+          <CardTitle className="flex justify-center text-4xl font-bold text-[#058248] dark:text-white">
+            Personal Information Details
+          </CardTitle>
+        </CardHeader>
         <Separator />
-
         <div className="mt-4">
           <Form {...form}>
-            <form className="space-y-6">
+            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
               <div className="grid grid-cols-2">
                 <div className="col-span-1">
                   <FormField
                     control={form.control}
-                    name=""
+                    name="fullName"
                     render={({ field }) => (
                       <FormItem>
                         <div className="flex">
                           <Users size={20} className="text-orange-400" />
                           <div className="ml-3 text-[#058248]">
-                            <FieldLabel label="Full Name" required />
+                            <FieldLabel label="Full Name" />
                           </div>
                         </div>
 
                         <FormControl>
                           <Input {...field} />
                         </FormControl>
-                        <FormDescription>Name of this request</FormDescription>
-                        <FormMessage />
                       </FormItem>
                     )}
                   />
@@ -83,41 +82,35 @@ export default function CreateRequestForm() {
               <div className="grid grid-cols-2 gap-4">
                 <FormField
                   control={form.control}
-                  name=""
+                  name="phoneNumber"
                   render={({ field }) => (
                     <FormItem>
                       <div className="flex">
                         <PhoneCall size={20} className="text-orange-400" />
                         <div className="ml-3 text-[#058248]">
-                          <FieldLabel label="Phone number" required />
+                          <FieldLabel label="Phone number" />
                         </div>
                       </div>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
-                      <FormDescription>
-                        Phone number of this request
-                      </FormDescription>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
                 <FormField
                   control={form.control}
-                  name=""
+                  name="gender"
                   render={({ field }) => (
                     <FormItem>
                       <div className="flex">
                         <VenusAndMars size={20} className="text-orange-400" />
                         <div className="ml-3 text-[#058248]">
-                          <FieldLabel label="Gender" required />
+                          <FieldLabel label="Gender" />
                         </div>
                       </div>
                       <FormControl>
                         <Input {...field} />
                       </FormControl>
-                      <FormDescription>Input your gender</FormDescription>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -126,25 +119,18 @@ export default function CreateRequestForm() {
               <div className="space-y-6">
                 <FormField
                   control={form.control}
-                  name=""
+                  name="description"
                   render={({ field }) => (
                     <FormItem>
                       <div className="flex">
                         <NotebookPen size={20} className="text-orange-400" />
                         <div className="ml-3 text-[#058248]">
-                          <FieldLabel label="Description" required />
+                          <FieldLabel label="Description" />
                         </div>
                       </div>
                       <FormControl>
-                        <Textarea
-                          placeholder="Please enter more information"
-                          {...field}
-                        />
+                        <Textarea {...field} />
                       </FormControl>
-                      <FormDescription>
-                        Additional information about the request
-                      </FormDescription>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
@@ -153,46 +139,34 @@ export default function CreateRequestForm() {
               <div className="space-y-6">
                 <FormField
                   control={form.control}
-                  name=""
+                  name="address"
                   render={({ field }) => (
                     <FormItem>
                       <div className="flex">
                         <MapPinHouse size={20} className="text-orange-400" />
                         <div className="ml-3 text-[#058248]">
-                          <FieldLabel label="Address" required />
+                          <FieldLabel label="Address" />
                         </div>
                       </div>
                       <FormControl>
-                        <Textarea
-                          placeholder="Please enter your local address"
-                          {...field}
-                        />
+                        <Textarea {...field} />
                       </FormControl>
-                      <FormDescription>
-                        Additional information about the request
-                      </FormDescription>
-                      <FormMessage />
                     </FormItem>
                   )}
                 />
               </div>
-
-              <div className="mt-4">
-                <div className="flex">
-                  <Paperclip size={20} className="text-orange-400" />
-                  <div className="ml-3 text-[#058248]">
-                    <FieldLabel label="Attachment" required />
-                  </div>
-                </div>
-                <FileDropzone />
-              </div>
-
-              <div className="flex w-full justify-end">
-                <Button variant="destructive">Submit</Button>
-              </div>
             </form>
           </Form>
         </div>
+
+        <CardFooter className="mt-10 flex justify-end">
+          <Button
+            className="bg-[#058248]"
+            onClick={form.handleSubmit(onSubmit)}
+          >
+            Save
+          </Button>
+        </CardFooter>
       </Card>
     </div>
   );
