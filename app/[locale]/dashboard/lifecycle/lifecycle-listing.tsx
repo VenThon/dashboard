@@ -32,70 +32,70 @@ const MockData = [
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 111,
   },
   {
     no: 2,
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 222,
   },
   {
     no: 3,
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 333,
   },
   {
     no: 4,
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 444,
   },
   {
     no: 5,
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 555,
   },
   {
     no: 6,
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 666,
   },
   {
     no: 7,
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 777,
   },
   {
     no: 8,
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 888,
   },
   {
     no: 9,
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 999,
   },
   {
     no: 10,
     name: "Alzakana",
     gender: "M",
     phonenumber: 11222222,
-    id: 123,
+    id: 101,
   },
 ];
 
@@ -153,7 +153,9 @@ export default function LifecycleListing() {
                 <DropdownMenuLabel>Actions</DropdownMenuLabel>
                 <DropdownMenuSeparator />
                 <DropdownMenuGroup>
-                  <Link href= {`/dashboard/lifecycle/${row.original.id}`}>Details</Link>
+                  <Link href={`/dashboard/lifecycle/${row.original.id}`}>
+                    Details
+                  </Link>
                 </DropdownMenuGroup>
               </DropdownMenuContent>
             </DropdownMenu>
@@ -175,7 +177,7 @@ export default function LifecycleListing() {
               type="button"
               variant="ghost"
               size="icon"
-              className="absolute top-1/2 right-1 bg-white h-7 w-7 -translate-y-1/2 text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
+              className="absolute top-1/2 right-1 h-7 w-7 -translate-y-1/2 bg-white text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-100"
             >
               <XIcon className="h-4 w-4" />
               <span className="sr-only">Clear</span>
