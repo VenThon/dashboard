@@ -13,6 +13,7 @@ import { useRouter } from "@/i18n/navigation";
 
 import {
   ChevronLeft,
+  CircleArrowDown,
   MapPinHouse,
   NotebookPen,
   PhoneCall,
@@ -39,13 +40,17 @@ export default function LifecycleDetailsPage() {
 
   return (
     <div>
-      <div>
+      <div className="flex justify-between">
         <Button
           variant="outline"
           onClick={() => router.push("/dashboard/lifecycle")}
         >
           <ChevronLeft />
           Back
+        </Button>
+        <Button className="bg-[#058248]">
+          <CircleArrowDown />
+          Download
         </Button>
       </div>
       <Card className="mt-4 w-full p-4">

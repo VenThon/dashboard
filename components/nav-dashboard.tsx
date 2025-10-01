@@ -78,12 +78,16 @@ export default function NavBarDashboard() {
             />
             <SideBarMenuBtn
               icon={FileText}
-              href={["/dashboard/lifecycle", "/dashboard/lifecycle/create","/dashboard/lifecycle/[id]"]}
+              href={[
+                "/dashboard/lifecycle",
+                "/dashboard/lifecycle/create",
+                "/dashboard/lifecycle/[id]",
+              ]}
               title={sidebarT("lifeCycle")}
             />
             <SideBarMenuBtn
               icon={BarChart2}
-              href={"/analytic"}
+              href={"/dashboard/analytic"}
               title={sidebarT("analytics")}
             />
           </SidebarMenuItem>

@@ -97,13 +97,24 @@ const MockData = [
     phonenumber: 11222222,
     id: 101,
   },
+  {
+    no: 11,
+    name: "Alzakana11",
+    gender: "M",
+    phonenumber: 11222211,
+    id: 101,
+  },
 ];
 
 export default function LifecycleListing() {
   const searchParam = useSearchParams();
   const page = Number.parseInt(searchParam.get("page") || "1");
   const pageSize = Number.parseInt(searchParam.get("pageSize") || "10");
-  const totalItems = Number.parseInt(searchParam.get("totalItems") || "10");
+  const totalItems = MockData.length;
+
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedData = MockData.slice(startIndex, endIndex);
   const columns: ColumnDef<DataProps>[] = [
     {
       accessorKey: "no",
@@ -191,10 +202,13 @@ export default function LifecycleListing() {
       </div>
 
       <div className="mt-4">
-        <DataTable data={MockData} columns={columns} />
+        <DataTable data={paginatedData} columns={columns} />
       </div>
       <div className="mt-5 flex justify-between">
-        <div>Showing Result{totalItems}</div>
+        <div className="text-md font-bold text-gray-700">
+          Showing {startIndex + 1}-{Math.min(endIndex, totalItems)} of{" "}
+          {totalItems} Items
+        </div>
         <div>
           <PaginationWithLinks
             page={page}
