@@ -1,3 +1,7 @@
+"use client";
+
+import { createElement, useState } from "react";
+
 import Link from "next/link";
 
 import { Button } from "@/components/ui/button";
@@ -5,10 +9,13 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
 
+import { EyeIcon, EyeOffIcon } from "lucide-react";
+
 export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<"form">) {
+  const [passwordVisibility, setPasswordVisibility] = useState(false);
   return (
     <form className={cn("flex flex-col gap-6", className)} {...props}>
       <div className="flex flex-col items-center gap-2 text-center">
@@ -25,16 +32,32 @@ export function LoginForm({
         <div className="grid gap-3">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
-            <a
-              href="#"
+
+            <Link
+              href="/auth/forgot-password"
               className="ml-auto text-sm underline-offset-4 hover:underline"
             >
               Forgot your password?
-            </a>
+            </Link>
           </div>
-          <Input id="password" type="password" required />
+
+          <div className="relative">
+            <Input
+              placeholder="Password"
+              type={passwordVisibility ? "text" : "password"}
+              autoComplete="current-password"
+            />
+            <div
+              className="text-muted-foreground absolute inset-y-0 right-0 flex cursor-pointer items-center p-3"
+              onClick={() => setPasswordVisibility(!passwordVisibility)}
+            >
+              {createElement(passwordVisibility ? EyeOffIcon : EyeIcon, {
+                className: "h-4 w-4",
+              })}
+            </div>
+          </div>
         </div>
-        <Button type="submit" className="w-full">
+        <Button type="submit" className="w-full bg-[#058248]">
           Login
         </Button>
         <div className="after:border-border relative text-center text-sm after:absolute after:inset-0 after:top-1/2 after:z-0 after:flex after:items-center after:border-t">
