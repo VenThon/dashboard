@@ -22,21 +22,7 @@ export function ResetPasswordForm({
       <div className="grid gap-6">
         <div className="grid gap-3">
           <Label htmlFor="newpassword">New password</Label>
-          <div className="relative">
-            <Input
-              placeholder="Password"
-              type={passwordVisibility ? "text" : "password"}
-              autoComplete="current-password"
-            />
-            <div
-              className="text-muted-foreground absolute inset-y-0 right-0 flex cursor-pointer items-center p-3"
-              onClick={() => setPasswordVisibility(!passwordVisibility)}
-            >
-              {createElement(passwordVisibility ? EyeOffIcon : EyeIcon, {
-                className: "h-4 w-4",
-              })}
-            </div>
-          </div>
+          <Input id="password" type="password" required />
         </div>
         <div className="grid gap-3">
           <div className="flex items-center">

@@ -3,7 +3,13 @@
 import Link from "next/link";
 import { useParams, usePathname } from "next/navigation";
 
-import { BarChart2, Database, FileText, LucideIcon } from "lucide-react";
+import {
+  BarChart2,
+  Database,
+  FileText,
+  LibraryBig,
+  LucideIcon,
+} from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
 import {
@@ -84,6 +90,11 @@ export default function NavBarDashboard() {
                 "/dashboard/lifecycle/[id]",
               ]}
               title={sidebarT("lifeCycle")}
+            />
+            <SideBarMenuBtn
+              icon={LibraryBig}
+              href={"/dashboard/subject"}
+              title="Subject"
             />
             <SideBarMenuBtn
               icon={BarChart2}
