@@ -93,7 +93,11 @@ export default function NavBarDashboard() {
             />
             <SideBarMenuBtn
               icon={LibraryBig}
-              href={"/dashboard/subject"}
+              href={[
+                "/dashboard/subject",
+                "/dashboard/subject/create",
+                "/dashboard/subject/[id]",
+              ]}
               title="Subject"
             />
             <SideBarMenuBtn

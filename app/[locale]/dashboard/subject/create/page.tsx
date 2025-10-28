@@ -1,11 +1,11 @@
 import DashboardLayout from "@/components/layout/dashboard-layout";
 
-import SubjectListingData from "./subject-listing";
+import SubjectCreationForm from "./subject-creation-form";
 
-export default async function Page() {
+export default function Page() {
   return (
     <DashboardLayout>
-      <SubjectListingData />
+      <SubjectCreationForm />
     </DashboardLayout>
   );
 }
