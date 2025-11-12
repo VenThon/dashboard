@@ -135,8 +135,8 @@ export default function SubjectListingData() {
             <FilterSubject />
             <Link href="/dashboard/subject/create">
               <Button className="border-primary w-full bg-green-600 sm:w-auto dark:text-white">
-                <Plus />
-                Add New Subject
+                <Plus className="rounded-full bg-white text-green-600" />
+                <span>Add New Subject</span>
               </Button>
             </Link>
           </div>
@@ -157,8 +157,8 @@ export default function SubjectListingData() {
                       <DropdownMenuTrigger asChild>
                         <Button
                           variant="ghost"
-                          size="sm"
                           onClick={(e) => e.stopPropagation()}
+                          className="h-6 w-8"
                         >
                           <Ellipsis color="#004282" />
                         </Button>
@@ -168,14 +168,14 @@ export default function SubjectListingData() {
                         <DropdownMenuGroup>
                           <DropdownMenuItem asChild>
                             <div className="flex cursor-pointer items-center">
-                              <Eye className="mx-2 h-4 w-4" />
+                              <Eye className="h-4 w-4" />
                               <span>View Details</span>
                             </div>
                           </DropdownMenuItem>
 
                           <DropdownMenuItem asChild>
                             <div className="mt-1 flex cursor-pointer items-center">
-                              <FilePenLine className="mx-2 h-4 w-4" />
+                              <FilePenLine className="h-4 w-4" />
                               <span>Edit</span>
                             </div>
                           </DropdownMenuItem>

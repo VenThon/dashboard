@@ -12,7 +12,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useRouter } from "@/i18n/navigation";
 
-import { Check, SlidersHorizontal } from "lucide-react";
+import { Check, ListFilter } from "lucide-react";
 
 export const GradeLevel = {
   GRADE_7: 7,
@@ -49,16 +49,15 @@ export function FilterSubject() {
       <DropdownMenuTrigger asChild>
         <Button
           variant="outline"
-          className="text-primary flex items-center gap-2 border dark:text-white"
+          className="text-primary flex items-center gap-2 border bg-green-600 dark:text-white"
         >
-          Filter by grade
-          <SlidersHorizontal className="h-4 w-4 text-gray-500" />
+          <ListFilter className="h-4 w-4 rounded-full bg-white p-0.5 font-semibold text-green-700" />
+          <span className="text-white">Filter by grade</span>
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
         <DropdownMenuGroup>
-          {/* All option */}
           <DropdownMenuItem
             onClick={() => handleGradeLevelChange("")}
             className="flex items-center justify-between"
@@ -76,7 +75,7 @@ export function FilterSubject() {
             >
               <div className="flex items-center gap-2">
                 {currentGrade === grade && <Check className="h-4 w-4" />}
-                <span> {grade}</span>
+                <span>Grade {grade}</span>
               </div>
             </DropdownMenuItem>
           ))}
