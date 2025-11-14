@@ -1,6 +1,6 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -35,8 +35,10 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { Link } from "@/i18n/navigation";
+import { formatDate } from "@/lib/utils";
 
 import { Ellipsis, Eye, FilePenLine, Plus } from "lucide-react";
+import { useLocale } from "next-intl";
 
 import { FilterSubject } from "../(components)/filter-subject";
 import { SearchSubjectCreation } from "../(components)/search-subject";
@@ -99,7 +101,43 @@ const subjectDataList: SubjectItem[] = [
   },
   {
     id: "6",
-    subject_name: "IT",
+    subject_name: "Khmer",
+    grade_level: "9",
+    ctc_center: "CTC 1",
+    total_chapters: 20,
+    total_hours: 200,
+    update_at: Date.now(),
+  },
+  {
+    id: "7",
+    subject_name: "Maths",
+    grade_level: "9",
+    ctc_center: "CTC 1",
+    total_chapters: 20,
+    total_hours: 200,
+    update_at: Date.now(),
+  },
+  {
+    id: "8",
+    subject_name: "Biology",
+    grade_level: "9",
+    ctc_center: "CTC 1",
+    total_chapters: 20,
+    total_hours: 200,
+    update_at: Date.now(),
+  },
+  {
+    id: "9",
+    subject_name: "Physis",
+    grade_level: "9",
+    ctc_center: "CTC 1",
+    total_chapters: 20,
+    total_hours: 200,
+    update_at: Date.now(),
+  },
+  {
+    id: "10",
+    subject_name: "English",
     grade_level: "9",
     ctc_center: "CTC 1",
     total_chapters: 20,
@@ -110,7 +148,6 @@ const subjectDataList: SubjectItem[] = [
 
 export default function SubjectListingData() {
   const searchParams = useSearchParams();
-  // const locale = useLocale();
 
   const page = Number.parseInt(searchParams.get("page") || "1");
   const pageSize = Number.parseInt(searchParams.get("pageSize") || "10");
@@ -123,7 +160,29 @@ export default function SubjectListingData() {
     const matchesGrade = gradeFilter ? item.grade_level === gradeFilter : true;
     return matchesSearch && matchesGrade;
   });
-  // const router = useRouter();
+  const locale = useLocale();
+  const router = useRouter();
+  const startIndex = (page - 1) * pageSize;
+  const endIndex = startIndex + pageSize;
+  const paginatedSubjects = filteredSubjects.slice(startIndex, endIndex);
+
+  // Also fix total pages for filtered results:
+  const totalPages = Math.ceil(filteredSubjects.length / pageSize);
+
+  // const totalPages = Math.ceil(subjectDataList.length / pageSize);
+  const handleRowsChange = (value: string) => {
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("pageSize", value);
+    newParams.set("page", "1");
+    router.push(`?${newParams.toString()}`);
+  };
+
+  const handlePageChange = (newPage: number) => {
+    if (newPage < 1 || newPage > totalPages) return;
+    const newParams = new URLSearchParams(searchParams);
+    newParams.set("page", String(newPage));
+    router.push(`?${newParams.toString()}`);
+  };
 
   return (
     <section>
@@ -144,13 +203,13 @@ export default function SubjectListingData() {
         <section id="subject-data-list" className="mt-6">
           {filteredSubjects.length > 0 ? (
             <div className="grid grid-cols-1 gap-4 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4">
-              {filteredSubjects.map((item, index) => (
+              {paginatedSubjects.map((item, index) => (
                 <Card
                   key={`${item.id}-${index}`}
                   className="group hover:bg-accent cursor-pointer"
                 >
                   <CardHeader className="flex items-start justify-between gap-2">
-                    <CardTitle className="text-primary text-xl font-medium">
+                    <CardTitle className="text-xl font-medium text-green-600">
                       {item.subject_name}
                     </CardTitle>
                     <DropdownMenu modal={false}>
@@ -187,18 +246,18 @@ export default function SubjectListingData() {
                     <p className="text-muted-foreground text-base">
                       {item.total_chapters} Chapters
                     </p>
-                    {/* <p className="text-muted-foreground text-xs">
+                    <p className="text-muted-foreground text-xs">
                       Latest update:{" "}
                       {formatDate(new Date(item.update_at), {
                         formatStr: "dd-LLL-yyyy pp",
                         localeCode: locale,
                       })}
-                    </p> */}
+                    </p>
                   </CardContent>
 
                   <CardFooter className="flex justify-between gap-2">
                     <p className="text-base font-medium text-orange-600">
-                      ថ្នាក់ទី {item.grade_level}
+                      Grade {item.grade_level}
                     </p>
                     <p className="text-primary text-base font-medium">
                       {item.total_hours} Hours
@@ -219,39 +278,48 @@ export default function SubjectListingData() {
         className="mt-6 grid w-full grid-cols-2 items-center justify-between gap-2 md:grid-cols-2 lg:grid-cols-3"
       >
         <div className="flex w-full items-center gap-2 sm:w-fit">
-          <span>Rows per page</span>
-          <Select>
-            <SelectTrigger className="max-w-sm">
-              <SelectValue placeholder="10" defaultValue={10} />
+          <span className="text-xl font-semibold text-yellow-500">
+            Rows per page
+          </span>
+          <Select value={String(pageSize)} onValueChange={handleRowsChange}>
+            <SelectTrigger className="w-20">
+              <SelectValue />
             </SelectTrigger>
             <SelectContent>
               <SelectGroup>
+                <SelectItem value="4">4</SelectItem>
+                <SelectItem value="8">8</SelectItem>
                 <SelectItem value="10">10</SelectItem>
-                <SelectItem value="20">50</SelectItem>
-                <SelectItem value="30">100</SelectItem>
+                <SelectItem value="12">12</SelectItem>
+                <SelectItem value="16">16</SelectItem>
               </SelectGroup>
             </SelectContent>
           </Select>
         </div>
 
         <div className="flex w-full items-center justify-center">
-          <span>
-            Page {page} of {pageSize}
+          <span className="text-xl font-semibold text-yellow-500">
+            Page {page} of {totalPages}
           </span>
         </div>
 
         <Pagination className="col-span-2 mx-0 items-end justify-center md:col-span-2 lg:col-span-1 lg:justify-end">
-          <PaginationContent>
+          <PaginationContent className="text-xl font-semibold text-yellow-500">
             <PaginationItem>
-              <PaginationPrevious href="#" />
+              <PaginationPrevious onClick={() => handlePageChange(page - 1)} />
             </PaginationItem>
-            <PaginationItem className="flex flex-nowrap">
-              <PaginationLink href="#">1</PaginationLink>
-              <PaginationLink href="#">2</PaginationLink>
-              <PaginationLink href="#">3</PaginationLink>
-            </PaginationItem>
+            {[...Array(totalPages)].map((_, index) => (
+              <PaginationItem key={index}>
+                <PaginationLink
+                  isActive={page === index + 1}
+                  onClick={() => handlePageChange(index + 1)}
+                >
+                  {index + 1}
+                </PaginationLink>
+              </PaginationItem>
+            ))}
             <PaginationItem>
-              <PaginationNext href="#" />
+              <PaginationNext onClick={() => handlePageChange(page + 1)} />
             </PaginationItem>
           </PaginationContent>
         </Pagination>
