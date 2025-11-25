@@ -2,53 +2,48 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/drizzle/db";
 import { users } from "@/drizzle/schema";
-import { comparePassword } from "@/utils/hash";
-import { signToken } from "@/utils/jwt";
+import { loginSchema } from "@/lib/validation/auth";
 
 import { eq } from "drizzle-orm";
+import { verify } from "jsonwebtoken";
 
 export async function POST(req: Request) {
-  try {
-    const { email, password } = await req.json();
+  const body = await req.json();
+  const parsed = loginSchema.safeParse(body);
 
-    if (!email || !password) {
-      return NextResponse.json(
-        { message: "Email and password required." },
-        { status: 400 },
-      );
-    }
-
-    // Find user
-    const found = await db.select().from(users).where(eq(users.email, email));
-    const user = found[0];
-    if (!user) {
-      return NextResponse.json(
-        { message: "Invalid credentials." },
-        { status: 401 },
-      );
-    }
-
-    // Check password
-    const valid = await comparePassword(password, user.password);
-    if (!valid) {
-      return NextResponse.json(
-        { message: "Invalid credentials." },
-        { status: 401 },
-      );
-    }
-
-    // Create token
-    const token = signToken({ id: user.id, email: user.email });
-
+  if (!parsed.success) {
     return NextResponse.json(
-      { message: "Login successful", token },
-      { status: 200 },
-    );
-  } catch (error) {
-    console.error("Login error:", error);
-    return NextResponse.json(
-      { message: "Internal server error." },
-      { status: 500 },
+      { error: parsed.error.flatten() },
+      { status: 400 },
     );
   }
+
+  const { email, password } = parsed.data;
+
+  // find user
+  const foundUser = await db
+    .select()
+    .from(users)
+    .where(eq(users.email, email))
+    .limit(1);
+
+  if (foundUser.length === 0) {
+    return NextResponse.json(
+      { error: "Invalid email or password" },
+      { status: 401 },
+    );
+  }
+
+  const user = foundUser[0];
+
+  // check password
+  const isValid = await verify(user.password, password);
+  if (!isValid) {
+    return NextResponse.json(
+      { error: "Invalid email or password" },
+      { status: 401 },
+    );
+  }
+
+  return NextResponse.json({ message: "Login success", user });
 }

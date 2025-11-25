@@ -205,7 +205,7 @@ export default function SubjectCreationForm() {
                               <Input
                                 type="text"
                                 {...field}
-                                placeholder="មូលដ្ឋានគ្រឹះ"
+                                placeholder="Enter chapter name"
                               />
                             </FormControl>
                             <FormMessage />

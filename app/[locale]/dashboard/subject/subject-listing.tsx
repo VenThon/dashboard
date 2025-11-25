@@ -186,7 +186,7 @@ export default function SubjectListingData() {
 
   return (
     <section>
-      <h2 className="text-primary text-3xl font-bold">All Subjects</h2>
+      <h2 className="text-primary text-3xl font-bold">List all subjects</h2>
       <div id="filter-functions" className="mt-6">
         <header className="flex flex-col items-center justify-between gap-4 sm:flex-row">
           <SearchSubjectCreation />

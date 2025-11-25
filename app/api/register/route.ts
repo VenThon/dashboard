@@ -2,56 +2,60 @@ import { NextResponse } from "next/server";
 
 import { db } from "@/drizzle/db";
 import { users } from "@/drizzle/schema";
-import { hashPassword } from "@/utils/hash";
+import { registerSchema } from "@/lib/validation/auth";
 
+import bcrypt from "bcryptjs";
 import { eq } from "drizzle-orm";
 
 export async function POST(req: Request) {
   try {
-    const { username, email, password, confirmPassword } = await req.json();
+    const body = await req.json();
 
-    if (!username || !email || !password || !confirmPassword) {
+    // 1. Validate
+    const parsed = registerSchema.safeParse(body);
+    if (!parsed.success) {
       return NextResponse.json(
-        { message: "All fields are required." },
+        { error: parsed.error.flatten() },
         { status: 400 },
       );
     }
 
-    if (password !== confirmPassword) {
-      return NextResponse.json(
-        { message: "Passwords do not match." },
-        { status: 400 },
-      );
-    }
+    const { username, email, password } = parsed.data;
 
-    // Check if email exists
-    const existing = await db
+    // 2. Check duplicate email
+    const existingUser = await db
       .select()
       .from(users)
       .where(eq(users.email, email));
-    if (existing.length > 0) {
+
+    if (existingUser.length > 0) {
       return NextResponse.json(
-        { message: "Email already registered." },
-        { status: 400 },
+        { message: "Email already exists" },
+        { status: 409 },
       );
     }
 
-    // Create user
-    const hashed = await hashPassword(password);
-    await db.insert(users).values({
-      username,
-      email,
-      password: hashed,
-    });
+    // 3. Hash password
+    const hashedPassword = bcrypt.hashSync(password, 12);
+
+    // 4. Insert new user
+    const newUser = await db
+      .insert(users)
+      .values({
+        username,
+        email,
+        password: hashedPassword,
+      })
+      .returning();
 
     return NextResponse.json(
-      { message: "User registered successfully." },
+      { message: "User created", user: newUser },
       { status: 201 },
     );
-  } catch (error) {
-    console.error("Register error:", error);
+  } catch (error: unknown) {
+    console.error("🔴 REGISTER ERROR:", error);
     return NextResponse.json(
-      { message: "Internal server error." },
+      { message: "Server error", error },
       { status: 500 },
     );
   }
