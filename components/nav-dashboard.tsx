@@ -9,6 +9,7 @@ import {
   FileText,
   LibraryBig,
   LucideIcon,
+  PersonStanding,
 } from "lucide-react";
 import { useLocale, useTranslations } from "next-intl";
 
@@ -99,6 +100,15 @@ export default function NavBarDashboard() {
                 "/dashboard/subject/[id]",
               ]}
               title="Subject"
+            />
+            <SideBarMenuBtn
+              icon={PersonStanding}
+              href={[
+                "/dashboard/staff",
+                "/dashboard/staff/create",
+                "/dashboard/staff/[id]",
+              ]}
+              title="Staff"
             />
             <SideBarMenuBtn
               icon={BarChart2}
