@@ -58,7 +58,7 @@ export const columnsDataTableStaff: ColumnDef<staff>[] = [
   },
   {
     accessorKey: "gender",
-    header: "Gerder",
+    header: "Gender",
     cell: ({ row }) => {
       return <section>{row.original.gender}</section>;
     },
