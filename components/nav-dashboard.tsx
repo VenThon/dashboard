@@ -107,7 +107,6 @@ export default function NavBarDashboard() {
                 "/dashboard/staff",
                 "/dashboard/staff/create",
                 "/dashboard/staff/edit/[id]",
-                "/dashboard/staff/view/[id]",
               ]}
               title="Staff"
             />

@@ -2,9 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Eye, SquarePen, Trash2 } from "lucide-react";
+import { SquarePen, Trash2 } from "lucide-react";
 
 import { staff } from "../../mockData/staff";
+import { StaffViewDetailDialog } from "../staff/view/staff-view-dialog";
 
 export const columnsDataTableStaff: ColumnDef<staff>[] = [
   {
@@ -70,7 +71,7 @@ export const columnsDataTableStaff: ColumnDef<staff>[] = [
     cell: ({ row }) => {
       return (
         <section className="flex items-center justify-center">
-          <Link href={`/dashboard/staff/${row.original.id}`}>
+          <Link href={`/dashboard/staff/edit/${row.original.id}`}>
             <Button
               asChild
               className="h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
@@ -81,7 +82,7 @@ export const columnsDataTableStaff: ColumnDef<staff>[] = [
             </Button>
           </Link>
 
-          <Link href="/dashboard/staff/create">
+          {/* <Link href={`/dashboard/staff/view/${row.original.id}`}>
             <Button
               asChild
               className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
@@ -90,8 +91,16 @@ export const columnsDataTableStaff: ColumnDef<staff>[] = [
                 <Eye className="size-4 font-bold text-white" />
               </span>
             </Button>
-          </Link>
-          <Link href="/dashboard/staff/create">
+          </Link> */}
+
+          <Button
+            asChild
+            className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
+          >
+            <StaffViewDetailDialog />
+          </Button>
+
+          <Link href={`/dashboard/staff/delete/${row.original.id}`}>
             <Button
               asChild
               className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
