@@ -81,23 +81,11 @@ export const columnsDataTableStaff: ColumnDef<staff>[] = [
               </span>
             </Button>
           </Link>
-
-          {/* <Link href={`/dashboard/staff/view/${row.original.id}`}>
-            <Button
-              asChild
-              className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
-            >
-              <span className="flex items-center gap-2">
-                <Eye className="size-4 font-bold text-white" />
-              </span>
-            </Button>
-          </Link> */}
-
           <Button
             asChild
             className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
           >
-            <StaffViewDetailDialog />
+            <StaffViewDetailDialog data={row.original} />
           </Button>
 
           <Link href={`/dashboard/staff/delete/${row.original.id}`}>
