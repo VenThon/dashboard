@@ -25,11 +25,9 @@ export function StaffViewDetailDialog({ data }: Props) {
         <DialogTrigger asChild>
           <Button
             variant="outline"
-            className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
+            className="ml-1.5 h-10 w-10 rounded-full bg-blue-500 p-0 text-white hover:bg-blue-500"
           >
-            <span className="flex items-center gap-2">
-              <Eye className="size-4 font-bold text-white" />
-            </span>
+            <Eye className="size-4 text-white" />
           </Button>
         </DialogTrigger>
         <DialogContent className="sm:max-w-[425px]">

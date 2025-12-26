@@ -13,7 +13,7 @@ import {
 import { PaginationWithLinks } from "@/components/ui/pagination-link";
 import { Link } from "@/i18n/navigation";
 
-import { ArrowDownFromLine, FileJson, Plus } from "lucide-react";
+import { FileDown, FileJson, Plus } from "lucide-react";
 
 import { columnsDataTableStaff } from "../(components)/dataTable-staff";
 import { downloadCSV } from "../(components)/downloadStaff-csv";
@@ -55,7 +55,7 @@ export default function StaffList() {
                 className="flex items-center justify-center bg-green-600 hover:bg-green-500 sm:w-auto dark:text-white"
                 onClick={() => downloadCSV(MockdataStaff, "staff.csv")}
               >
-                <ArrowDownFromLine className="font-extrabold" />
+                <FileDown className="font-extrabold" />
                 <span>Download CSV</span>
               </Button>
               <Button

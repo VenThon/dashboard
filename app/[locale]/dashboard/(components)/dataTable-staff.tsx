@@ -2,9 +2,10 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { SquarePen, Trash2 } from "lucide-react";
+import { SquarePen } from "lucide-react";
 
 import { staff } from "../../mockData/staff";
+import { StaffDeleteAlertDialog } from "../staff/delete/staff-delete-dialog";
 import { StaffViewDetailDialog } from "../staff/view/staff-view-dialog";
 
 export const columnsDataTableStaff: ColumnDef<staff>[] = [
@@ -74,30 +75,19 @@ export const columnsDataTableStaff: ColumnDef<staff>[] = [
           <Link href={`/dashboard/staff/edit/${row.original.id}`}>
             <Button
               asChild
-              className="h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
+              className="h-10 w-10 rounded-full bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
             >
               <span className="flex items-center gap-2">
-                <SquarePen className="size-4 font-bold text-white" />
+                <SquarePen className="font-bold text-white" />
               </span>
             </Button>
           </Link>
-          <Button
-            asChild
-            className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
-          >
+          <div>
             <StaffViewDetailDialog data={row.original} />
-          </Button>
-
-          <Link href={`/dashboard/staff/delete/${row.original.id}`}>
-            <Button
-              asChild
-              className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
-            >
-              <span className="flex items-center gap-2">
-                <Trash2 className="size-4 font-bold text-white" />
-              </span>
-            </Button>
-          </Link>
+          </div>
+          <div>
+            <StaffDeleteAlertDialog />
+          </div>
         </section>
       );
     },
