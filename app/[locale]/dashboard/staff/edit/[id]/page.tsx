@@ -1,11 +1,11 @@
 import DashboardLayout from "@/components/layout/dashboard-layout";
 
-import StaffFormCreate from "./staff-form-create";
+import StaffEdit from "./staff-edit";
 
 export default function Page() {
   return (
     <DashboardLayout>
-      <StaffFormCreate />
+      <StaffEdit />
     </DashboardLayout>
   );
 }

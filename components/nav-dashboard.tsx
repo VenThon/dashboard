@@ -106,7 +106,7 @@ export default function NavBarDashboard() {
               href={[
                 "/dashboard/staff",
                 "/dashboard/staff/create",
-                "/dashboard/staff/[id]",
+                "/dashboard/staff/edit/[id]",
               ]}
               title="Staff"
             />

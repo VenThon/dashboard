@@ -52,7 +52,7 @@ export function FilterStaff() {
           className="flex items-center gap-2 border bg-green-600 hover:bg-green-500 dark:text-white"
         >
           <ListFilter className="h-4 w-4 rounded-full bg-white p-0.5 font-semibold text-green-700" />
-          <span className="text-white">Filter by position</span>
+          <span className="text-white">Filter By Position</span>
         </Button>
       </DropdownMenuTrigger>
 

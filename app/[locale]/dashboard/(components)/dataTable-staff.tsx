@@ -2,9 +2,11 @@ import { Button } from "@/components/ui/button";
 import { Link } from "@/i18n/navigation";
 
 import { ColumnDef } from "@tanstack/react-table";
-import { Eye, SquarePen, Trash2 } from "lucide-react";
+import { SquarePen } from "lucide-react";
 
 import { staff } from "../../mockData/staff";
+import { StaffDeleteAlertDialog } from "../staff/delete/staff-delete-dialog";
+import { StaffViewDetailDialog } from "../staff/view/staff-view-dialog";
 
 export const columnsDataTableStaff: ColumnDef<staff>[] = [
   {
@@ -58,7 +60,7 @@ export const columnsDataTableStaff: ColumnDef<staff>[] = [
   },
   {
     accessorKey: "gender",
-    header: "Gerder",
+    header: "Gender",
     cell: ({ row }) => {
       return <section>{row.original.gender}</section>;
     },
@@ -70,37 +72,22 @@ export const columnsDataTableStaff: ColumnDef<staff>[] = [
     cell: ({ row }) => {
       return (
         <section className="flex items-center justify-center">
-          <Link href={`/dashboard/staff/${row.original.id}`}>
+          <Link href={`/dashboard/staff/edit/${row.original.id}`}>
             <Button
               asChild
-              className="h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
+              className="h-10 w-10 rounded-full bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
             >
               <span className="flex items-center gap-2">
-                <SquarePen className="size-4 font-bold text-white" />
+                <SquarePen className="font-bold text-white" />
               </span>
             </Button>
           </Link>
-
-          <Link href="/dashboard/staff/create">
-            <Button
-              asChild
-              className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
-            >
-              <span className="flex items-center gap-2">
-                <Eye className="size-4 font-bold text-white" />
-              </span>
-            </Button>
-          </Link>
-          <Link href="/dashboard/staff/create">
-            <Button
-              asChild
-              className="ml-1.5 h-8 bg-[#058248] hover:bg-green-600 sm:w-auto dark:text-white"
-            >
-              <span className="flex items-center gap-2">
-                <Trash2 className="size-4 font-bold text-white" />
-              </span>
-            </Button>
-          </Link>
+          <div>
+            <StaffViewDetailDialog data={row.original} />
+          </div>
+          <div>
+            <StaffDeleteAlertDialog />
+          </div>
         </section>
       );
     },

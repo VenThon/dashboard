@@ -40,7 +40,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "126",
-    staffName: "Ngov socheatdalin",
+    staffName: "Ngov socheatdalin01",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -49,7 +49,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "127",
-    staffName: "Ngov socheatdalin",
+    staffName: "Ngov socheatdalin02",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -58,7 +58,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "128",
-    staffName: "Ngov socheatdalin",
+    staffName: "Ngov socheatdalin03",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -67,7 +67,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "129",
-    staffName: "Ngov socheatdalin",
+    staffName: "Ngov socheatdalin04",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -76,7 +76,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "130",
-    staffName: "Ngov socheatdalin",
+    staffName: "Ngov socheatdalin05",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -85,7 +85,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "131",
-    staffName: "Ngov socheatdalin",
+    staffName: "Ngov socheatdalin06",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -94,7 +94,25 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "132",
-    staffName: "Ngov socheatdalin",
+    staffName: "Ngov socheatdalin07",
+    email: "linlinzintoo@gmail.com",
+    phoneNumber: "069426623",
+    position: "Frontend dev",
+    imageURl: "ImageURL",
+    gender: "Female",
+  },
+  {
+    id: "133",
+    staffName: "Ngov socheatdalin08",
+    email: "linlinzintoo@gmail.com",
+    phoneNumber: "069426623",
+    position: "Frontend dev",
+    imageURl: "ImageURL",
+    gender: "Female",
+  },
+  {
+    id: "134",
+    staffName: "Ngov socheatdalin09",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
