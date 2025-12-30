@@ -12,7 +12,13 @@ import {
 } from "@/components/ui/dialog";
 import { Label } from "@/components/ui/label";
 
-import { CircleUserRound, EllipsisVertical, Eye } from "lucide-react";
+import {
+  CircleUserRound,
+  ContactRound,
+  EllipsisVertical,
+  Eye,
+  NotebookPen,
+} from "lucide-react";
 
 type Props = {
   data: staff;
@@ -42,6 +48,10 @@ export function StaffViewDetailDialog({ data }: Props) {
           <div>
             <div className="flex items-center justify-center">
               <CircleUserRound className="h-28 w-28 text-green-500" />
+            </div>
+            <div className="mt-4 flex gap-1">
+              <ContactRound size={20} className="mt-0.5" />
+              <Label className="w-32 text-xl">Personal Data</Label>
             </div>
             <div className="mt-4 space-y-3">
               <div className="flex w-full max-w-md items-center gap-6">
@@ -95,6 +105,15 @@ export function StaffViewDetailDialog({ data }: Props) {
                   />
                   <span>{data.email}</span>
                 </div>
+              </div>
+            </div>
+            <div className="mt-4">
+              <div className="flex gap-1">
+                <NotebookPen size={18} className="mt-1" />
+                <Label className="w-28 text-xl">Description</Label>
+              </div>
+              <div className="mt-1 flex items-center text-sm">
+                <span>{data.description}</span>
               </div>
             </div>
           </div>

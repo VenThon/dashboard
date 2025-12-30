@@ -4,6 +4,7 @@ import * as React from "react";
 
 import { useRouter } from "next/navigation";
 
+import { FileDropzone } from "@/components/FileDropzone";
 import { Button } from "@/components/ui/button";
 import {
   Card,
@@ -29,7 +30,16 @@ import {
 } from "@/components/ui/input-group";
 
 import { zodResolver } from "@hookform/resolvers/zod";
-import { ChevronLeft } from "lucide-react";
+import {
+  ChevronLeft,
+  MailPlus,
+  Paperclip,
+  PhoneCall,
+  SquarePen,
+  SquaresExclude,
+  UserRoundPen,
+  VenusAndMars,
+} from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
 import { toast } from "sonner";
 import * as z from "zod";
@@ -85,27 +95,150 @@ export default function StaffFormCreate() {
 
       <Card className="mt-6 w-full">
         <CardHeader>
-          <CardTitle>Bug Report</CardTitle>
+          <CardTitle className="text-2xl text-[#058248]">
+            Create New Staff
+          </CardTitle>
           <CardDescription>
-            Help us improve by reporting bugs you encounter.
+            Create a new staff profile by entering personal details, assigning a
+            role, and setting access permissions.
           </CardDescription>
         </CardHeader>
         <CardContent>
           <form id="form-rhf-demo" onSubmit={form.handleSubmit(onSubmit)}>
             <FieldGroup>
+              <div className="flex gap-4">
+                <Controller
+                  name="title"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <div className="flex gap-3">
+                        <UserRoundPen className="h-5 w-5 text-orange-400" />
+                        <FieldLabel
+                          className="text-[#058248]"
+                          htmlFor="form-rhf-demo-title"
+                        >
+                          Name
+                        </FieldLabel>
+                      </div>
+                      <Input
+                        {...field}
+                        id="form-rhf-demo-title"
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Input your name"
+                        autoComplete="off"
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+                <Controller
+                  name="title"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <div className="flex gap-3">
+                        <VenusAndMars className="text-orange-400" />
+                        <FieldLabel
+                          className="text-[#058248]"
+                          htmlFor="form-rhf-demo-title"
+                        >
+                          Gender
+                        </FieldLabel>
+                      </div>
+                      <Input
+                        {...field}
+                        id="form-rhf-demo-title"
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Input your gender"
+                        autoComplete="off"
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+              </div>
+              <div className="flex gap-4">
+                <Controller
+                  name="title"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <div className="flex gap-3">
+                        <SquaresExclude className="h-5 w-5 text-orange-400" />
+                        <FieldLabel
+                          className="text-[#058248]"
+                          htmlFor="form-rhf-demo-title"
+                        >
+                          Position
+                        </FieldLabel>
+                      </div>
+                      <Input
+                        {...field}
+                        id="form-rhf-demo-title"
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Input your position"
+                        autoComplete="off"
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+                <Controller
+                  name="title"
+                  control={form.control}
+                  render={({ field, fieldState }) => (
+                    <Field data-invalid={fieldState.invalid}>
+                      <div className="flex gap-3">
+                        <MailPlus className="h-5 w-5 text-orange-400" />
+                        <FieldLabel
+                          className="text-[#058248]"
+                          htmlFor="form-rhf-demo-title"
+                        >
+                          Email{" "}
+                        </FieldLabel>
+                      </div>
+
+                      <Input
+                        {...field}
+                        id="form-rhf-demo-title"
+                        aria-invalid={fieldState.invalid}
+                        placeholder="Input your email"
+                        autoComplete="off"
+                      />
+                      {fieldState.invalid && (
+                        <FieldError errors={[fieldState.error]} />
+                      )}
+                    </Field>
+                  )}
+                />
+              </div>
               <Controller
                 name="title"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor="form-rhf-demo-title">
-                      Bug Title
-                    </FieldLabel>
+                    <div className="flex gap-3">
+                      <PhoneCall className="h-5 w-5 text-orange-400" />
+                      <FieldLabel
+                        className="text-[#058248]"
+                        htmlFor="form-rhf-demo-title"
+                      >
+                        Phone Number
+                      </FieldLabel>
+                    </div>
+
                     <Input
                       {...field}
                       id="form-rhf-demo-title"
                       aria-invalid={fieldState.invalid}
-                      placeholder="Login button not working on mobile"
+                      placeholder="Input your phone number"
                       autoComplete="off"
                     />
                     {fieldState.invalid && (
@@ -119,14 +252,21 @@ export default function StaffFormCreate() {
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>
-                    <FieldLabel htmlFor="form-rhf-demo-description">
-                      Description
-                    </FieldLabel>
+                    <div className="flex gap-3">
+                      <SquarePen className="h-5 w-5 text-orange-400" />
+                      <FieldLabel
+                        className="text-[#058248]"
+                        htmlFor="form-rhf-demo-description"
+                      >
+                        Description
+                      </FieldLabel>
+                    </div>
+
                     <InputGroup>
                       <InputGroupTextarea
                         {...field}
                         id="form-rhf-demo-description"
-                        placeholder="I'm having an issue with the login button on mobile."
+                        placeholder="Write decription about new staff infomation"
                         rows={6}
                         className="min-h-24 resize-none"
                         aria-invalid={fieldState.invalid}
@@ -147,6 +287,17 @@ export default function StaffFormCreate() {
                   </Field>
                 )}
               />
+              <div className="mt-4">
+                <div className="flex">
+                  <Paperclip size={20} className="text-orange-400" />
+                  <div className="ml-3 text-[#058248]">
+                    <FieldLabel htmlFor="form-rhf-demo-description">
+                      Attachment
+                    </FieldLabel>
+                  </div>
+                </div>
+                <FileDropzone />
+              </div>
             </FieldGroup>
           </form>
         </CardContent>
@@ -154,12 +305,16 @@ export default function StaffFormCreate() {
           <Field orientation="horizontal">
             <Button
               type="button"
-              variant="outline"
+              variant="secondary"
               onClick={() => form.reset()}
             >
               Reset
             </Button>
-            <Button type="submit" form="form-rhf-demo">
+            <Button
+              type="submit"
+              className="bg-green-500 hover:bg-green-400"
+              form="form-rhf-demo"
+            >
               Submit
             </Button>
           </Field>

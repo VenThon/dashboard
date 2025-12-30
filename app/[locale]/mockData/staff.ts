@@ -8,6 +8,7 @@ export type staff = {
   position: string;
   imageURl: string;
   gender: Gender;
+  description: string;
 };
 
 export const MockdataStaff: staff[] = [
@@ -19,6 +20,8 @@ export const MockdataStaff: staff[] = [
     position: "Teacher",
     imageURl: "ImageURL",
     gender: "Male",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "124",
@@ -28,6 +31,8 @@ export const MockdataStaff: staff[] = [
     position: "DevOps",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "125",
@@ -37,6 +42,8 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "126",
@@ -46,6 +53,8 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "127",
@@ -55,6 +64,8 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "128",
@@ -64,6 +75,8 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "129",
@@ -73,6 +86,8 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "130",
@@ -82,6 +97,8 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "131",
@@ -91,6 +108,8 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "132",
@@ -100,6 +119,8 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "133",
@@ -109,6 +130,8 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
   {
     id: "134",
@@ -118,5 +141,7 @@ export const MockdataStaff: staff[] = [
     position: "Frontend dev",
     imageURl: "ImageURL",
     gender: "Female",
+    description:
+      "Create a new staff profile by entering personal details, assigning a role, and setting access permissions.",
   },
 ];
