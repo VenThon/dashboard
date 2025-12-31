@@ -45,10 +45,14 @@ import { toast } from "sonner";
 import * as z from "zod";
 
 const formSchema = z.object({
-  title: z
+  staffName: z
     .string()
     .min(5, "Bug title must be at least 5 characters.")
     .max(32, "Bug title must be at most 32 characters."),
+  gender: z.string(),
+  position: z.string(),
+  email: z.string(),
+  phoneNumber: z.string(),
   description: z
     .string()
     .min(20, "Description must be at least 20 characters.")
@@ -60,7 +64,10 @@ export default function StaffFormCreate() {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      title: "",
+      staffName: "",
+      gender: "",
+      position: "",
+      email: "",
       description: "",
     },
   });
@@ -108,7 +115,7 @@ export default function StaffFormCreate() {
             <FieldGroup>
               <div className="flex gap-4">
                 <Controller
-                  name="title"
+                  name="staffName"
                   control={form.control}
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
@@ -135,7 +142,7 @@ export default function StaffFormCreate() {
                   )}
                 />
                 <Controller
-                  name="title"
+                  name="gender"
                   control={form.control}
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
@@ -164,7 +171,7 @@ export default function StaffFormCreate() {
               </div>
               <div className="flex gap-4">
                 <Controller
-                  name="title"
+                  name="position"
                   control={form.control}
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
@@ -191,7 +198,7 @@ export default function StaffFormCreate() {
                   )}
                 />
                 <Controller
-                  name="title"
+                  name="email"
                   control={form.control}
                   render={({ field, fieldState }) => (
                     <Field data-invalid={fieldState.invalid}>
@@ -220,7 +227,7 @@ export default function StaffFormCreate() {
                 />
               </div>
               <Controller
-                name="title"
+                name="phoneNumber"
                 control={form.control}
                 render={({ field, fieldState }) => (
                   <Field data-invalid={fieldState.invalid}>

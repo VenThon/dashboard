@@ -17,7 +17,7 @@ export function SearchAllStaff() {
 
   const router = useRouter();
   useEffect(() => {
-    const value = searchParams.get("name") || "";
+    const value = searchParams.get("staffName") || "";
     setSearchQuery(value);
   }, [searchParams]);
 
@@ -25,7 +25,7 @@ export function SearchAllStaff() {
     (searchValue: string) => {
       const newSearchParams = new URLSearchParams(searchParams);
       newSearchParams.set("page", "1");
-      newSearchParams.set("name", searchValue);
+      newSearchParams.set("staffName", searchValue);
       return newSearchParams.toString();
     },
     [searchParams],
@@ -44,7 +44,7 @@ export function SearchAllStaff() {
 
   const clearSearch = () => {
     const params = new URLSearchParams(searchParams);
-    params.delete("name");
+    params.delete("staffName");
     router.push(`?${params}`);
     setSearchQuery("");
   };

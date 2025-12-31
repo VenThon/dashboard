@@ -47,7 +47,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "126",
-    staffName: "Ngov socheatdalin01",
+    staffName: "Ngov socheatdalin",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -58,7 +58,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "127",
-    staffName: "Ngov socheatdalin02",
+    staffName: "G devid",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -69,7 +69,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "128",
-    staffName: "Ngov socheatdalin03",
+    staffName: "Sokun niza",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -80,7 +80,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "129",
-    staffName: "Ngov socheatdalin04",
+    staffName: "Skun kanha",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -91,7 +91,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "130",
-    staffName: "Ngov socheatdalin05",
+    staffName: "Test name",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
@@ -102,7 +102,7 @@ export const MockdataStaff: staff[] = [
   },
   {
     id: "131",
-    staffName: "Ngov socheatdalin06",
+    staffName: "Tep boprek",
     email: "linlinzintoo@gmail.com",
     phoneNumber: "069426623",
     position: "Frontend dev",
