@@ -26,7 +26,6 @@ export default function StaffList() {
   const searchParam = useSearchParams();
   const page = Number.parseInt(searchParam.get("page") || "1");
   const pageSize = Number.parseInt(searchParam.get("pageSize") || "10");
-  // const totalItems = MockdataStaff.length;
 
   const searchByname = searchParam.get("staffName")?.toLowerCase() || "";
   const filterByGender = searchParam.get("gender");

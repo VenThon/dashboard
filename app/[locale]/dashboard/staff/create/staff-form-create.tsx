@@ -28,6 +28,14 @@ import {
   InputGroupText,
   InputGroupTextarea,
 } from "@/components/ui/input-group";
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
+import { cn } from "@/lib/utils";
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
@@ -41,8 +49,12 @@ import {
   VenusAndMars,
 } from "lucide-react";
 import { Controller, useForm } from "react-hook-form";
+import { isValidPhoneNumber } from "react-phone-number-input";
 import { toast } from "sonner";
 import * as z from "zod";
+
+import { Gender } from "../../(components)/filter-staff";
+import { PhoneNumberInput } from "../../(components)/phone-input";
 
 const formSchema = z.object({
   staffName: z
@@ -51,8 +63,8 @@ const formSchema = z.object({
     .max(32, "Bug title must be at most 32 characters."),
   gender: z.string(),
   position: z.string(),
-  email: z.string(),
-  phoneNumber: z.string(),
+  email: z.string().email("Invalid email"),
+  phoneNumber: z.string().refine(isValidPhoneNumber, "Invalid phone number"),
   description: z
     .string()
     .min(20, "Description must be at least 20 characters.")
@@ -68,6 +80,7 @@ export default function StaffFormCreate() {
       gender: "",
       position: "",
       email: "",
+      phoneNumber: undefined,
       description: "",
     },
   });
@@ -155,13 +168,23 @@ export default function StaffFormCreate() {
                           Gender
                         </FieldLabel>
                       </div>
-                      <Input
-                        {...field}
-                        id="form-rhf-demo-title"
-                        aria-invalid={fieldState.invalid}
-                        placeholder="Input your gender"
-                        autoComplete="off"
-                      />
+                      <Select
+                        value={field.value}
+                        onValueChange={field.onChange}
+                      >
+                        <SelectTrigger aria-invalid={fieldState.invalid}>
+                          <SelectValue placeholder="Select gender" />
+                        </SelectTrigger>
+
+                        <SelectContent>
+                          {Object.values(Gender).map((gender) => (
+                            <SelectItem key={gender} value={gender}>
+                              {gender.charAt(0).toUpperCase() + gender.slice(1)}
+                            </SelectItem>
+                          ))}
+                        </SelectContent>
+                      </Select>
+
                       {fieldState.invalid && (
                         <FieldError errors={[fieldState.error]} />
                       )}
@@ -240,20 +263,27 @@ export default function StaffFormCreate() {
                         Phone Number
                       </FieldLabel>
                     </div>
-
-                    <Input
-                      {...field}
-                      id="form-rhf-demo-title"
-                      aria-invalid={fieldState.invalid}
-                      placeholder="Input your phone number"
-                      autoComplete="off"
-                    />
+                    <div
+                      className={cn(
+                        "border-input bg-background flex h-10 w-full items-center rounded-md border",
+                        "px-3 py-2 text-sm",
+                        "ring-offset-background",
+                        "focus-within:ring-ring focus-within:ring-2 focus-within:ring-offset-2 focus-within:outline-none",
+                      )}
+                    >
+                      <PhoneNumberInput
+                        value={field.value}
+                        onChange={field.onChange}
+                        defaultCountry="KH"
+                      />
+                    </div>
                     {fieldState.invalid && (
                       <FieldError errors={[fieldState.error]} />
                     )}
                   </Field>
                 )}
               />
+
               <Controller
                 name="description"
                 control={form.control}
