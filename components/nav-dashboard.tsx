@@ -7,6 +7,7 @@ import {
   BarChart2,
   Database,
   FileText,
+  GitPullRequest,
   LibraryBig,
   LucideIcon,
   PersonStanding,
@@ -109,6 +110,15 @@ export default function NavBarDashboard() {
                 "/dashboard/staff/edit/[id]",
               ]}
               title="Staff"
+            />
+            <SideBarMenuBtn
+              icon={GitPullRequest}
+              href={[
+                "/dashboard/request",
+                "/dashboard/request/create",
+                "/dashboard/request/edit/[id]",
+              ]}
+              title="Request"
             />
             <SideBarMenuBtn
               icon={BarChart2}

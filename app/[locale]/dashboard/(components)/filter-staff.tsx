@@ -14,31 +14,27 @@ import { useRouter } from "@/i18n/navigation";
 
 import { Check, ListFilter } from "lucide-react";
 
-export const GradeLevel = {
-  GRADE_7: 7,
-  GRADE_8: 8,
-  GRADE_9: 9,
-  GRADE_10: 10,
-  GRADE_11: 11,
-  GRADE_12: 12,
+export const Gender = {
+  Male: "Male",
+  Female: "Female",
+  Other: "Other",
 } as const;
 
-export type GradeLevelType = (typeof GradeLevel)[keyof typeof GradeLevel];
+export type GenderType = (typeof Gender)[keyof typeof Gender];
 
 export function FilterStaff() {
   const router = useRouter();
   const searchParams = useSearchParams();
 
-  const currentGradeParam = searchParams.get("grade");
-  const currentGrade = currentGradeParam ? Number(currentGradeParam) : null;
+  const currentGender = searchParams.get("gender") as GenderType | null;
 
-  const handleGradeLevelChange = (grade: GradeLevelType | "") => {
+  const handleGenderChange = (gender: GenderType | "") => {
     const params = new URLSearchParams(searchParams);
 
-    if (grade) {
-      params.set("grade", grade.toString());
+    if (gender) {
+      params.set("gender", gender);
     } else {
-      params.delete("grade");
+      params.delete("gender");
     }
 
     router.push(`?${params.toString()}`, { scroll: false });
@@ -51,32 +47,31 @@ export function FilterStaff() {
           variant="outline"
           className="flex items-center gap-2 border bg-green-600 hover:bg-green-500 dark:text-white"
         >
-          <ListFilter className="h-4 w-4 rounded-full bg-white p-0.5 font-semibold text-green-700" />
-          <span className="text-white">Filter By Position</span>
+          <ListFilter className="h-4 w-4 rounded-full bg-white p-0.5 text-green-700" />
+          <span className="text-white">Filter by Gender</span>
         </Button>
       </DropdownMenuTrigger>
 
       <DropdownMenuContent>
         <DropdownMenuGroup>
+          {/* All */}
           <DropdownMenuItem
-            onClick={() => handleGradeLevelChange("")}
-            className="flex items-center justify-between"
+            onClick={() => handleGenderChange("")}
+            className="flex items-center gap-2"
           >
-            <div className="flex items-center gap-2">
-              {currentGrade === null && <Check className="h-4 w-4" />}
-              <span>All</span>
-            </div>
+            {currentGender === null && <Check className="h-4 w-4" />}
+            <span>All</span>
           </DropdownMenuItem>
-          {Object.values(GradeLevel).map((grade) => (
+
+          {/* Gender list */}
+          {Object.values(Gender).map((gender) => (
             <DropdownMenuItem
-              key={grade}
-              onClick={() => handleGradeLevelChange(grade)}
-              className="flex items-center justify-between"
+              key={gender}
+              onClick={() => handleGenderChange(gender)}
+              className="flex items-center gap-2"
             >
-              <div className="flex items-center gap-2">
-                {currentGrade === grade && <Check className="h-4 w-4" />}
-                <span>Grade {grade}</span>
-              </div>
+              {currentGender === gender && <Check className="h-4 w-4" />}
+              <span>{gender}</span>
             </DropdownMenuItem>
           ))}
         </DropdownMenuGroup>

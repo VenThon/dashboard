@@ -26,11 +26,23 @@ export default function StaffList() {
   const searchParam = useSearchParams();
   const page = Number.parseInt(searchParam.get("page") || "1");
   const pageSize = Number.parseInt(searchParam.get("pageSize") || "10");
-  const totalItems = MockdataStaff.length;
+
+  const searchByname = searchParam.get("staffName")?.toLowerCase() || "";
+  const filterByGender = searchParam.get("gender");
+
+  const SearchFilterStaffs = MockdataStaff.filter((item) => {
+    const matchesSearch = item.staffName.toLowerCase().includes(searchByname);
+    const matchesFilterGender = filterByGender
+      ? item.gender === filterByGender
+      : true;
+    return matchesSearch && matchesFilterGender;
+  });
+
+  const totalItems = SearchFilterStaffs.length;
 
   const startIndex = (page - 1) * pageSize;
   const endIndex = startIndex + pageSize;
-  const paginatedData = MockdataStaff.slice(startIndex, endIndex);
+  const paginatedData = SearchFilterStaffs.slice(startIndex, endIndex);
   return (
     <section>
       <Card>
