@@ -1,11 +1,11 @@
 import DashboardLayout from "@/components/layout/dashboard-layout";
 
-import RequestListing from "./request-listing";
+import RequestForm from "./request-form";
 
 export default function Page() {
   return (
     <DashboardLayout>
-      <RequestListing />
+      <RequestForm />
     </DashboardLayout>
   );
 }
