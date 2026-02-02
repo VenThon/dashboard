@@ -24,14 +24,14 @@ export default function RequestListing() {
             <SearchAllStaff />
             <div className="grid grid-cols-2 gap-2">
               <FilterStaff />
-              <Link href="/dashboard/staff/create">
+              <Link href="/dashboard/request/create">
                 <Button
                   asChild
                   className="w-full bg-green-600 hover:bg-green-500 sm:w-auto dark:text-white"
                 >
                   <span className="flex items-center gap-2">
                     <Plus className="rounded-full bg-white text-green-600" />
-                    <span>Create New</span>
+                    <span>Create Request</span>
                   </span>
                 </Button>
               </Link>
