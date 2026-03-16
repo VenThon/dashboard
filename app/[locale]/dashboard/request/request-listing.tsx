@@ -19,7 +19,7 @@ export default function RequestListing() {
     <section>
       <Card>
         <CardHeader>
-          <CardTitle className="text-2xl">List all staff</CardTitle>
+          <CardTitle className="text-2xl">List all users request</CardTitle>
           <CardDescription className="mt-4 flex justify-between">
             <SearchAllStaff />
             <div className="grid grid-cols-2 gap-2">

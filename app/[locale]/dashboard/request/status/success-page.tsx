@@ -13,7 +13,7 @@ import { useRouter } from "@/i18n/navigation";
 
 import { CircleCheckBig } from "lucide-react";
 
-export default function DailogStatusPage() {
+export default function SuccessPage() {
   const router = useRouter();
   return (
     <section>
@@ -54,9 +54,9 @@ export default function DailogStatusPage() {
           </Button>
           <Button
             variant="outline"
-            onClick={() => router.push("/dashboard/request/create")}
+            onClick={() => router.push("/dashboard/request")}
           >
-            Return to Home
+            Return to listing request page
           </Button>
         </CardFooter>
       </Card>

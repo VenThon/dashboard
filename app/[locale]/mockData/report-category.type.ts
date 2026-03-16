@@ -6,3 +6,10 @@ export const REPORT_CATEGORY_OPTIONS = [
   { label: "Misinformation", value: "misinformation" },
   { label: "Other", value: "other" },
 ];
+
+export const CONTENT_TYPE = [
+  { label: "Video", value: "video" },
+  { label: "Account Handle", value: "account_handle" },
+  { label: "Image", value: "image" },
+  { label: "Hashtag", value: "hashtag" },
+] as const;
