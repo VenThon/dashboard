@@ -1,11 +1,11 @@
 import DashboardLayout from "@/components/layout/dashboard-layout";
 
-import DailogStatusPage from "./dailog-status";
+import SuccessPage from "./success-page";
 
 export default function Page() {
   return (
     <DashboardLayout>
-      <DailogStatusPage />
+      <SuccessPage />
     </DashboardLayout>
   );
 }
