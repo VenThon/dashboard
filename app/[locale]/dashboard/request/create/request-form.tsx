@@ -422,12 +422,12 @@ export default function RequestForm() {
               <Button
                 variant="outline"
                 onClick={() => router.push("/dashboard/request")}
-                className="w-[27vw]"
+                className="w-[17vw]"
               >
                 Back
               </Button>
               <Button
-                className="w-[27vw] bg-green-700 hover:bg-green-600"
+                className="w-[17vw] bg-green-700 hover:bg-green-600"
                 onClick={() => router.push("/dashboard/request/status")}
               >
                 Submit
