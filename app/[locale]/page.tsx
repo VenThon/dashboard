@@ -1,13 +1,17 @@
-import { Link } from "@/i18n/navigation";
+// import { Link } from "@/i18n/navigation";
+// import { useTranslations } from "next-intl";
+// export default function HomePage() {
+//   const t = useTranslations("HomePage");
+//   return (
+//     <div>
+//       <h1>{t("title")}</h1>
+//       <Link href="/about">{t("about")}</Link>
+//     </div>
+//   );
+// }
+// app/page.tsx
+import { redirect } from "next/navigation";
 
-import { useTranslations } from "next-intl";
-
-export default function HomePage() {
-  const t = useTranslations("HomePage");
-  return (
-    <div>
-      <h1>{t("title")}</h1>
-      <Link href="/about">{t("about")}</Link>
-    </div>
-  );
+export default function Page() {
+  redirect("./auth/login");
 }
