@@ -17,3 +17,19 @@ export const logoutService = {
       method: "POST",
     }),
 };
+
+export const RegisterService = {
+  register: (data: {
+    username: string;
+    email: string;
+    password: string;
+    confirmPassword: string;
+  }) =>
+    fetcher("/api/register", {
+      method: "POST",
+      body: JSON.stringify(data),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    }),
+};

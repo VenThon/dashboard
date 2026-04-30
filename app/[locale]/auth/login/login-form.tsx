@@ -9,9 +9,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { cn } from "@/lib/utils";
+import { LoginInput, loginSchema } from "@/lib/validation/auth";
 import { loginService } from "@/service/auth.service";
 
+import { zodResolver } from "@hookform/resolvers/zod";
 import { EyeIcon, EyeOffIcon } from "lucide-react";
+import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 
 export function LoginForm({
@@ -19,27 +22,33 @@ export function LoginForm({
   ...props
 }: React.ComponentProps<"form">) {
   const router = useRouter();
-
   const [passwordVisibility, setPasswordVisibility] = useState(false);
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [serverError, setServerError] = useState("");
   const [loading, setLoading] = useState(false);
-  const [error, setError] = useState("");
 
-  const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const form = useForm<LoginInput>({
+    resolver: zodResolver(loginSchema),
+    defaultValues: {
+      username: "",
+      password: "",
+    },
+    mode: "onSubmit",
+  });
+
+  const onSubmit = async (data: LoginInput) => {
+    setServerError("");
     setLoading(true);
-    setError("");
 
     try {
       await loginService.userLogin({
-        username,
-        password,
+        username: data.username.trim(),
+        password: data.password,
       });
-      toast.success("Login successful ");
+
+      toast.success("Login successful");
       router.push("/dashboard");
     } catch (err: unknown) {
-      setError(err instanceof Error ? err.message : "Login failed");
+      setServerError(err instanceof Error ? err.message : "Login failed");
     } finally {
       setLoading(false);
     }
@@ -47,34 +56,40 @@ export function LoginForm({
 
   return (
     <form
-      onSubmit={handleSubmit}
+      onSubmit={form.handleSubmit(onSubmit)}
       className={cn("flex flex-col gap-6", className)}
+      noValidate
       {...props}
     >
       <div className="flex flex-col items-center gap-2 text-center">
-        <h1 className="text-2xl font-bold">Login to your account</h1>
+        <h1 className="text-2xl font-bold">System Login</h1>
         <p className="text-muted-foreground text-sm">
-          Enter your credentials to login
+          Please enter your username and password to continue.
         </p>
       </div>
 
       <div className="grid gap-6">
-        {error && <p className="text-center text-sm text-red-500">{error}</p>}
+        {serverError ? (
+          <p className="text-center text-sm text-red-500">{serverError}</p>
+        ) : null}
 
-        {/* Username */}
         <div className="grid gap-3">
           <Label htmlFor="username">Username</Label>
           <Input
             id="username"
             type="text"
             placeholder="Enter username"
-            value={username}
-            onChange={(e) => setUsername(e.target.value)}
-            required
+            autoComplete="username"
+            aria-invalid={!!form.formState.errors.username}
+            {...form.register("username")}
           />
+          {form.formState.errors.username ? (
+            <p className="text-sm text-red-500">
+              {form.formState.errors.username.message}
+            </p>
+          ) : null}
         </div>
 
-        {/* Password */}
         <div className="grid gap-3">
           <div className="flex items-center">
             <Label htmlFor="password">Password</Label>
@@ -91,20 +106,31 @@ export function LoginForm({
             <Input
               id="password"
               type={passwordVisibility ? "text" : "password"}
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Enter password"
               autoComplete="current-password"
-              required
+              aria-invalid={!!form.formState.errors.password}
+              {...form.register("password")}
             />
-            <div
-              className="absolute inset-y-0 right-0 flex cursor-pointer items-center p-3"
-              onClick={() => setPasswordVisibility(!passwordVisibility)}
+
+            <button
+              type="button"
+              className="absolute inset-y-0 right-0 flex items-center p-3"
+              onClick={() => setPasswordVisibility((prev) => !prev)}
+              aria-label={
+                passwordVisibility ? "Hide password" : "Show password"
+              }
             >
               {createElement(passwordVisibility ? EyeOffIcon : EyeIcon, {
                 className: "h-4 w-4",
               })}
-            </div>
+            </button>
           </div>
+
+          {form.formState.errors.password ? (
+            <p className="text-sm text-red-500">
+              {form.formState.errors.password.message}
+            </p>
+          ) : null}
         </div>
 
         <Button

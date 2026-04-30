@@ -10,8 +10,6 @@ import { eq } from "drizzle-orm";
 export async function POST(req: Request) {
   try {
     const body = await req.json();
-    console.log("BODY:", body);
-    console.log("DB URL:", process.env.DATABASE_URL);
 
     // 1. Validate
     const parsed = registerSchema.safeParse(body);
@@ -67,18 +65,17 @@ export async function POST(req: Request) {
 
     return NextResponse.json(
       {
-        message: "User created",
+        message: "User registered successfully",
         user: {
           id: user.id,
           username: user.username,
           email: user.email,
-          password: user.password,
         },
       },
       { status: 201 },
     );
   } catch (error) {
-    console.error("🔴 REGISTER ERROR:", error);
+    console.error(" REGISTER ERROR:", error);
     return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 }
