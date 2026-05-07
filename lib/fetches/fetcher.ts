@@ -11,6 +11,7 @@
 
 //   return res.json();
 // }
+
 export async function fetcher(url: string, options?: RequestInit) {
   const res = await fetch(url, {
     ...options,
@@ -20,10 +21,7 @@ export async function fetcher(url: string, options?: RequestInit) {
   const data = await res.json();
 
   if (!res.ok) {
-    // 🔥 FIX HERE
-    throw new Error(
-      data.error || data.message || "Something went wrong"
-    );
+    throw new Error(data.message || "Something went wrong");
   }
 
   return data;
