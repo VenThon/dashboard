@@ -12,7 +12,7 @@ export function useLogout() {
   const logout = async () => {
     await logoutService.logout();
 
-    toast.success("Logged out 👋");
+    toast.success("Logged out");
 
     router.push("/auth/login");
   };

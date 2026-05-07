@@ -13,6 +13,7 @@ export async function POST(req: Request) {
     const body = await req.json();
 
     const parsed = loginSchema.safeParse(body);
+
     if (!parsed.success) {
       return NextResponse.json(
         { error: parsed.error.flatten() },
@@ -22,7 +23,6 @@ export async function POST(req: Request) {
 
     const { username, password } = parsed.data;
 
-    // 1. find user
     const foundUser = await db
       .select()
       .from(usersTable)
@@ -38,7 +38,6 @@ export async function POST(req: Request) {
 
     const user = foundUser[0];
 
-    // 2. check password
     const isValid = await bcrypt.compare(password, user.password);
 
     if (!isValid) {
@@ -48,13 +47,15 @@ export async function POST(req: Request) {
       );
     }
 
-    const accessToken = generateAccessToken(user.id);
+    const accessToken = generateAccessToken({
+      id: user.id,
+      username: user.username,
+      email: user.email,
+    });
 
-    // 3. return safe data
-    return NextResponse.json(
+    const response = NextResponse.json(
       {
         message: "Login success",
-        accessToken,
         user: {
           id: user.id,
           username: user.username,
@@ -63,6 +64,16 @@ export async function POST(req: Request) {
       },
       { status: 200 },
     );
+
+    response.cookies.set("token", accessToken, {
+      httpOnly: true,
+      secure: false,
+      sameSite: "lax",
+      path: "/",
+      maxAge: 60 * 60 * 24,
+    });
+
+    return response;
   } catch (error) {
     console.error("LOGIN ERROR:", error);
 
