@@ -8,5 +8,43 @@
     "dashboard": "Dashboard",
     "lifeCycle": "Life Cycle",
     "analytics": "Analytics Data"
+  },
+  "Form": {
+    "title": "Submit a Report",
+    "sub_title": "Report digital content, websites, or online activities that require government attention. All reports are handled confidentiality.",
+    "label_report_category": "Report Category",
+    "report_category": {
+      "Harmful Content": "Harmful Content",
+      "Illegal Activities": "Illegal Activities",
+      "Cybersecurity Threats": "Cybersecurity Threats",
+      "Privacy Violations": "Privacy Violations",
+      "Misinformation": "Misinformation",
+      "Other": "Other"
+    },
+    "report_title": "Report Title",
+    "placeholder_report_title": "Brief description of the issue",
+    "detail_description": "Detailed Description",
+    "placeholder_detail_description": "Provide detailed information about the issue, including what you observed and why it's concerning...",
+    "label_website_url": "Website URL or Link (if applicable)",
+    "label_anonymously": "Submit anonymously (recommended)",
+    "hid_anonymously": {
+      "description": "Providing contact information is optional but may help with follow-up questions.",
+      "label_email": "Email",
+      "label_phone_number": "Phone Number"
+    },
+    "label_supporting_evidence": "Supporting Evidence (optional)",
+    "drag_drop_title": "Drag and drop files here, or click to select",
+    "drag_drop_description": "Supported formats: JPG, JPEG, PNG, PDF, DOCX, CSV",
+    "select_files": "Select files",
+    "provacy_notice": "Privacy Notice",
+    "provacy_notice_description": "Your report will be reviewed by authorized government personnel only. If submitted anonymously, no personal information will be stored or tracked.",
+    "submit": "Submit",
+    "report_submit_success": "Report Submitted Successfully",
+    "report_submit_title": "Your report has been received and assigning a tracking number",
+    "ticket_id": "Your Ticket ID",
+    "description_id": "Save this ID to track your report status",
+    "description_report_review": "Your report will be reviewed by the appropriate government agency within 2-3 business days",
+    "track_this_report": "Track This Report",
+    "return_to_home": "Return to Home"
   }
 }

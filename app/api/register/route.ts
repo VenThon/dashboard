@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 
-import { db } from "@/drizzle/db";
-import { users } from "@/drizzle/schema";
+import { db } from "@/db";
+import { usersTable } from "@/db/schema";
 import { registerSchema } from "@/lib/validation/auth";
 
 import bcrypt from "bcryptjs";
@@ -23,40 +23,59 @@ export async function POST(req: Request) {
     const { username, email, password } = parsed.data;
 
     // 2. Check duplicate email
-    const existingUser = await db
+    const existingEmail = await db
       .select()
-      .from(users)
-      .where(eq(users.email, email));
+      .from(usersTable)
+      .where(eq(usersTable.email, email));
 
-    if (existingUser.length > 0) {
+    if (existingEmail.length > 0) {
       return NextResponse.json(
         { message: "Email already exists" },
         { status: 409 },
       );
     }
 
-    // 3. Hash password
-    const hashedPassword = bcrypt.hashSync(password, 12);
+    // 3. Check duplicate username
+    const existingUsername = await db
+      .select()
+      .from(usersTable)
+      .where(eq(usersTable.username, username));
 
-    // 4. Insert new user
+    if (existingUsername.length > 0) {
+      return NextResponse.json(
+        { message: "Username already exists" },
+        { status: 409 },
+      );
+    }
+
+    // 4. Hash password (async)
+    const hashedPassword = await bcrypt.hash(password, 12);
+
+    // 5. Insert new user
     const newUser = await db
-      .insert(users)
+      .insert(usersTable)
       .values({
-        username,
-        email,
+        username: username.trim(),
+        email: email.trim(),
         password: hashedPassword,
       })
       .returning();
 
+    const user = newUser[0];
+
     return NextResponse.json(
-      { message: "User created", user: newUser },
+      {
+        message: "User registered successfully",
+        user: {
+          id: user.id,
+          username: user.username,
+          email: user.email,
+        },
+      },
       { status: 201 },
     );
-  } catch (error: unknown) {
-    console.error("🔴 REGISTER ERROR:", error);
-    return NextResponse.json(
-      { message: "Server error", error },
-      { status: 500 },
-    );
+  } catch (error) {
+    console.error(" REGISTER ERROR:", error);
+    return NextResponse.json({ message: "Server error" }, { status: 500 });
   }
 }

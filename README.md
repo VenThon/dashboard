@@ -43,3 +43,13 @@ npm install next-intl
 ## authentication using lucia auth with nextjs
 
 [Reference lucia auth](https://lucia-auth.com/)
+
+## Phone number field
+
+How can I make a phone number field that lets users select other countries, showing the country flag and calling code (for example, Cambodia 🇰🇭 +855)?
+
+```bash
+npm install react-phone-number-input
+```
+
+After installing the library, we created a phone number input component with the default country set to KH and used it in the phone number field of the create form.
